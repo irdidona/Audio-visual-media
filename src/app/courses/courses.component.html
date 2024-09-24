@@ -1,0 +1,22 @@
+<div class="course-details-container">
+    <div class="course-sidebar">
+      <h3>{{ course.title }}</h3>
+      <ul>
+        <li *ngFor="let chapter of course.chapters" 
+            (click)="selectChapter(chapter)" 
+            [class.selected]="chapter === selectedChapter">
+          {{ chapter.title }}
+        </li>
+      </ul>
+    </div>
+  
+    <div class="course-content">
+      <h4>{{ selectedChapter?.title }}</h4>
+      <p>{{ selectedChapter?.description }}</p>
+  
+      <div *ngIf="selectedChapter?.videoUrl" class="video-container">
+        <video [src]="selectedChapter?.videoUrl" controls></video>
+      </div>
+    </div>
+  </div>
+  

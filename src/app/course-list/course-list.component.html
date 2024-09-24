@@ -1,0 +1,14 @@
+
+<div class="course-list-container">
+    <h2>All Courses</h2>
+    <div class="course-card" *ngFor="let course of courses">
+        <!-- <img *ngIf="course.videoUrl" src="path_to_thumbnail" alt="{{ course.title }} thumbnail"> -->
+        <h3>{{ course.title }}</h3>
+        <p>{{ course.description }}</p>
+        <p><strong>Teacher:</strong> {{ course.teacher }}</p>
+        <a [routerLink]="['/courses', course.id]" class="details-link">View Details</a>
+      </div>
+  </div>
+
+
+  

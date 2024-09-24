@@ -1,0 +1,27 @@
+<div class="user-profile">
+    <img [src]="user?.profilePictureUrl" alt="{{ user?.name }}" class="profile-picture" />
+    
+    <h2>{{ user?.name }}</h2>
+    <p>{{ user?.email }}</p>
+    <p>{{ user?.bio }}</p>
+  
+    <button *ngIf="!isEditing" (click)="enableEdit()">Edit Profile</button>
+  
+    <div *ngIf="isEditing" class="edit-form">
+      <label>
+        Name:
+        <input [(ngModel)]="user.name" />
+      </label>
+      <label>
+        Email:
+        <input [(ngModel)]="user.email" />
+      </label>
+      <label>
+        Bio:
+        <textarea [(ngModel)]="user.bio"></textarea>
+      </label>
+      <button (click)="saveProfile()">Save</button>
+      <button (click)="cancelEdit()">Cancel</button>
+    </div>
+  </div>
+  

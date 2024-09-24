@@ -1,0 +1,127 @@
+.user-profile {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .profile-picture {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #dedede;
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 18px;
+    color: #7f8c8d;
+    margin-bottom: 5px;
+  }
+  
+  .bio {
+    font-size: 16px;
+    color: #95a5a6;
+    max-width: 600px;
+    margin: 20px auto;
+    line-height: 1.5;
+  }
+  
+  .edit-form {
+    margin-top: 20px;
+    text-align: left;
+  }
+  
+  .edit-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #34495e;
+  }
+  
+  .edit-form input,
+  .edit-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #ecf0f1;
+    color: #2c3e50;
+  }
+  
+  .edit-form textarea {
+    height: 120px;
+    resize: vertical;
+  }
+  
+  .button-group {
+    text-align: right;
+  }
+  
+  button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #2980b9;
+  }
+  
+  .cancel-button {
+    background-color: #7f8c8d;
+    margin-right: 10px;
+  }
+  
+  .cancel-button:hover {
+    background-color: #707b7c;
+  }
+  
+  @media (max-width: 768px) {
+    .user-profile {
+      padding: 20px 10px;
+    }
+  
+    h2 {
+      font-size: 24px;
+    }
+  
+    p {
+      font-size: 16px;
+    }
+  
+    .bio {
+      font-size: 14px;
+    }
+  
+    button {
+      padding: 8px 16px;
+      font-size: 14px;
+    }
+  }
+  

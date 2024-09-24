@@ -1,0 +1,23 @@
+<header class="header">
+    <div class="logo">
+      <h1>E-Learn</h1>
+    </div>
+    <div class="nav-center">
+      <nav>
+        <ul>
+          <li><a (click)="navigateTo('')">Home</a></li>
+          <li><a (click)="navigateTo('/courses')">Courses</a></li>
+          <li><a (click)="navigateTo('/tutors')">Tutors</a></li>
+          <li><a (click)="navigateTo('/community')">Community</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="nav-right">
+      <ul>
+        <li><a (click)="navigateTo('login')">Login</a></li>
+        <li><a (click)="navigateTo('signup')" >Sign Up</a></li>
+      </ul>
+    </div>
+  </header>
+
+<router-outlet></router-outlet>

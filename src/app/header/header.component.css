@@ -1,0 +1,58 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #f0f0f0; /* Light background color */
+    color: #333333; /* Darker text color */
+  }
+  
+  .logo h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #2f3ba5; /* Darker color for the title */
+  }
+  
+  .nav-center ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .nav-center ul li {
+    display: inline-block;
+    margin: 0 15px;
+  }
+  
+  .nav-center ul li a {
+    color: #555555; /* Darker color for links */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+  }
+  
+  .nav-center ul li a:hover {
+    color: #000000; /* Even darker color on hover */
+  }
+  
+  .nav-right ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  .nav-right ul li {
+    margin-left: 15px;
+  }
+  
+  .nav-right ul li a {
+    color: #555555; /* Darker color for login and signup links */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+  }
+  
+  .nav-right ul li a:hover {
+    color: #000000; /* Even darker color on hover */
+  }

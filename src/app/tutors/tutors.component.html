@@ -1,0 +1,10 @@
+<section class="tutors">
+    <h2>Meet Our Tutors</h2>
+    <div class="tutor-list">
+      <div class="tutor" *ngFor="let tutor of tutors">
+        <img [src]="tutor.image" alt="{{tutor.name}}">
+        <h3>{{tutor.name}}</h3>
+        <p>{{tutor.bio}}</p>
+      </div>
+    </div>
+  </section>

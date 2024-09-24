@@ -1,0 +1,57 @@
+.tutors {
+    padding: 50px 20px;
+  }
+  
+  .tutors h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+  }
+  
+  .tutor-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .tutor {
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 20px;
+    flex: 1 1 300px;
+    max-width: 200px;
+    text-align: center;
+  }
+  
+  .tutor img {
+    border-radius: 50%;
+    max-width: 100px;
+    height: 100px;
+  }
+  
+  .tutor h3 {
+    margin-top: 15px;
+    font-size: 1.2rem;
+  }
+  
+  .tutor p {
+    color: #555;
+  }
+  
+  @media (max-width: 768px) {
+    .tutors h2 {
+      font-size: 1.8rem;
+    }
+  
+    .tutor-list {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .tutor {
+      max-width: 100%;
+    }
+  }

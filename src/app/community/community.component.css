@@ -1,0 +1,48 @@
+.community-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .question-form, .questions-list, .answers-section {
+    margin-bottom: 20px;
+  }
+  
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .questions-list ul, .answers-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .questions-list li, .answers-section li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+  }
+  
+  .questions-list li:hover, .answers-section li:hover {
+    background-color: #f8f8f8;
+  }
+  
+  small {
+    color: #666;
+  }
+  

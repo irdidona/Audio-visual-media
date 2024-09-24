@@ -1,0 +1,74 @@
+<div class="course-form-container">
+    <h2>{{ isEditMode ? 'Edit Course' : 'Add New Course' }}</h2>
+  
+    <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="title">Course Title</label>
+        <input id="title" formControlName="title" placeholder="Enter course title" />
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Course Description</label>
+        <textarea id="description" formControlName="description" placeholder="Enter course description"></textarea>
+      </div>
+  
+      <div formArrayName="chapters">
+        <div *ngFor="let chapter of chapters.controls; let i = index" [formGroupName]="i" class="chapter-group">
+          <h3>Chapter {{ i + 1 }}</h3>
+          <div class="form-group">
+            <label for="chapter-title-{{i}}">Chapter Title</label>
+            <input id="chapter-title-{{i}}" formControlName="title" placeholder="Enter chapter title" />
+          </div>
+  
+          <div class="form-group">
+            <label for="chapter-video-{{i}}">Video URL</label>
+            <input id="chapter-video-{{i}}" formControlName="videoUrl" placeholder="Enter video URL" />
+          </div>
+  
+          <div class="form-group">
+            <label for="chapter-description-{{i}}">Description</label>
+            <textarea id="chapter-description-{{i}}" formControlName="description" placeholder="Enter chapter description"></textarea>
+          </div>
+  
+          <div class="form-group">
+            <label for="chapter-explanation-{{i}}">Explanation</label>
+            <textarea id="chapter-explanation-{{i}}" formControlName="explanation" placeholder="Enter chapter explanation"></textarea>
+          </div>
+  
+          <div formArrayName="quiz">
+            <h4>Quiz</h4>
+            <!-- <div *ngFor="let question of chapter.get('quiz')?.controls; let j = index" [formGroupName]="j"></div>
+              <div class="form-group">
+                <label for="quiz-question-{{i}}-{{j}}">Question</label>
+                <input id="quiz-question-{{i}}-{{j}}" formControlName="question" placeholder="Enter quiz question" />
+              </div>
+  
+              <div formArrayName="options">
+                <div *ngFor="let option of question.get('options')?.controls; let k = index" class="form-group">
+                  <label for="quiz-option-{{i}}-{{j}}-{{k}}">Option {{ k + 1 }}</label>
+                  <input id="quiz-option-{{i}}-{{j}}-{{k}}" [formControlName]="k" placeholder="Enter option" />
+                </div>
+              </div>
+  
+              <div class="form-group">
+                <label for="quiz-correctAnswer-{{i}}-{{j}}">Correct Answer</label>
+                <input id="quiz-correctAnswer-{{i}}-{{j}}" formControlName="correctAnswer" placeholder="Enter correct answer" />
+              </div>
+  
+              <button type="button" (click)="removeQuizQuestion(i, j)">Remove Question</button>
+            </div> -->
+  
+            <button type="button" (click)="addQuizQuestion(i)">Add Quiz Question</button>
+          </div>
+  
+          <button type="button" (click)="removeChapter(i)">Remove Chapter</button>
+        </div>
+        </div>
+     
+  
+      <button type="button" (click)="addChapter()">Add Chapter</button>
+  
+      <button type="submit" [disabled]="!courseForm.valid">{{ isEditMode ? 'Update Course' : 'Create Course' }}</button>
+    </form>
+  </div>
+  
