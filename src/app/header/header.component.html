@@ -1,23 +1,24 @@
 <header class="header">
-    <div class="logo">
-      <h1>E-Learn</h1>
-    </div>
-    <div class="nav-center">
-      <nav>
-        <ul>
-          <li><a (click)="navigateTo('')">Home</a></li>
-          <li><a (click)="navigateTo('/courses')">Courses</a></li>
-          <li><a (click)="navigateTo('/tutors')">Tutors</a></li>
-          <li><a (click)="navigateTo('/community')">Community</a></li>
-        </ul>
-      </nav>
-    </div>
-    <div class="nav-right">
+  <div class="logo">
+    <h1>E-Learn</h1>
+  </div>
+  <div class="nav-center">
+    <nav>
       <ul>
-        <li><a (click)="navigateTo('login')">Login</a></li>
-        <li><a (click)="navigateTo('signup')" >Sign Up</a></li>
+        <li><a (click)="navigateTo('')">Home</a></li>
+        <li><a (click)="navigateTo('/courses')">Courses</a></li>
+        <li><a (click)="navigateTo('/tutors')">Tutors</a></li>
+        <li><a (click)="navigateTo('/community')">Community</a></li>
       </ul>
-    </div>
-  </header>
-
+    </nav>
+  </div>
+  <div class="nav-right">
+    <ul>
+      <li *ngIf="!isLoggedIn"><a (click)="navigateTo('login')">Login</a></li>
+      <li *ngIf="!isLoggedIn"><a (click)="navigateTo('signup')">Sign Up</a></li>
+      <li *ngIf="isLoggedIn"  (click)="navigateTo('profile')"><span>Hello, {{ userName }}</span></li>
+      <li *ngIf="isLoggedIn"><a (click)="logout()">Logout</a></li>
+    </ul>
+  </div>
+</header>
 <router-outlet></router-outlet>
