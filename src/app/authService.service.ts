@@ -9,6 +9,7 @@ export class AuthService {
   private apiUrl = 'http://localhost:3000/api/auth';
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private userSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  private user: any = { role: 'admin' }; // Simulating an admin user for now
 
 
   constructor(private http: HttpClient) {}
@@ -33,11 +34,17 @@ export class AuthService {
         console.log('Login successful', response);
         //localStorage.setItem('token', response.token);
         this.userSubject.next(response);
+        //this.user = response
+        
       }));
   }
 
   logout() {
     this.loggedIn.next(false);
     // Perform logout logic, such as clearing token
+  }
+
+  getUser() {
+    return this.user;
   }
 }
