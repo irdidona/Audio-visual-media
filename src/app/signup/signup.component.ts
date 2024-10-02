@@ -2,23 +2,28 @@ import { Component } from '@angular/core';
 import { AuthService } from '../authService.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
+import { DropdownModule } from 'primeng/dropdown';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, DropdownModule, CommonModule],
   templateUrl: './signup.component.html',
-  styleUrl: './signup.component.css'
+  styleUrl: './signup.component.css',
 })
 export class SignupComponent {
-
   user = {
     name: '',
     email: '',
     password: '',
-    role: 'student'
+    role: 'student',
   };
+
+  options = [
+    { label: 'Student', role: 'student' },
+    { label: 'Tutor', role: 'tutor' },
+  ];
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -35,5 +40,4 @@ export class SignupComponent {
       }
     );
   }
-
 }

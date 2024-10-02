@@ -16,9 +16,10 @@
     <ul>
       <li *ngIf="!isLoggedIn"><a (click)="navigateTo('login')">Login</a></li>
       <li *ngIf="!isLoggedIn"><a (click)="navigateTo('signup')">Sign Up</a></li>
-      <li *ngIf="isLoggedIn"  (click)="navigateTo('profile')"><span>Hello, {{ userName }}</span></li>
+      <li *ngIf="isLoggedIn" (click)="navigateTo('profile')">
+        <span>Hello, {{ userName }}</span>
+      </li>
       <li *ngIf="isLoggedIn"><a (click)="logout()">Logout</a></li>
     </ul>
   </div>
 </header>
-<router-outlet></router-outlet>

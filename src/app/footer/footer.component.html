@@ -1,31 +1,25 @@
 <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-links">
-          <a routerLink="/privacy-policy">Privacy Policy</a>
-          <a routerLink="/terms-of-service">Terms of Service</a>
-          <a routerLink="/contact">Contact</a>
-        </div>
-        <div class="footer-social">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-        </div>
-        <div class="footer-newsletter">
-          <form (submit)="subscribeNewsletter($event)">
-            <input type="email" placeholder="Subscribe to our newsletter" required />
-            <button type="submit">Subscribe</button>
-          </form>
-        </div>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a routerLink="/privacy-policy">Privacy Policy</a>
+        <a routerLink="/terms-of-service">Terms of Service</a>
+        <a routerLink="/contact">Contact</a>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2024 E-Learn by Estel Dona. All rights reserved.</p>
+      <div class="footer-newsletter">
+        <form (submit)="subscribeNewsletter($event)">
+          <input
+            pInputText
+            type="email"
+            placeholder="Subscribe to our newsletter"
+            required
+          />
+          <button type="submit">Subscribe</button>
+        </form>
       </div>
     </div>
-  </footer>
+    <div class="footer-bottom">
+      <p>&copy; 2024 E-Learn by Estel Dona. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

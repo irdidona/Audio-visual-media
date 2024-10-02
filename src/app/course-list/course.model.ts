@@ -14,6 +14,7 @@ export interface Chapter {
 
 export interface Course {
   id?: number;
+  img?: string;
   title: string;
   description: string;
   teacher: string;

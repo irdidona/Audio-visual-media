@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.css']
+  styleUrls: ['./footer.component.css'],
+  imports: [InputTextModule],
 })
 export class FooterComponent {
   subscribeNewsletter(event: Event) {

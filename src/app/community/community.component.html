@@ -1,32 +1,40 @@
 <div class="community-container">
-    <div class="question-form">
-      <h3>Ask a Question</h3>
-      <textarea [(ngModel)]="newQuestion" placeholder="Enter your question here"></textarea>
-      <button (click)="askQuestion()">Submit</button>
-    </div>
-  
-    <div class="questions-list">
-      <h3>Questions</h3>
-      <ul>
-        <li *ngFor="let question of questions" (click)="selectQuestion(question)">
-          <span>{{ question.text }}</span>
-          <small>{{ question.date | date:'short' }}</small>
-        </li>
-      </ul>
-    </div>
-  
-    <div class="answers-section" *ngIf="selectedQuestion">
-      <h4>Question: {{ selectedQuestion.text }}</h4>
-      <h5>Answers</h5>
-      <ul>
-        <li *ngFor="let answer of selectedQuestion.answers">
-          {{ answer.text }}
-          <small>{{ answer.date | date:'short' }}</small>
-        </li>
-      </ul>
-  
-      <textarea #answerInput placeholder="Your answer here"></textarea>
-      <button (click)="addAnswer(answerInput.value)">Submit Answer</button>
-    </div>
+  <div class="question-form">
+    <h3>Ask a Question</h3>
+    <textarea
+      rows="5"
+      pInputTextarea
+      [(ngModel)]="newQuestion"
+      placeholder="Enter your question here"
+    ></textarea>
+    <button class="submit-btn" (click)="askQuestion()">Submit</button>
   </div>
-  
+
+  <div class="questions-list">
+    <h3>Questions</h3>
+    <ul>
+      <li *ngFor="let question of questions" (click)="selectQuestion(question)">
+        <span>{{ question.text }}</span>
+        <small
+          ><i>{{ question.date | date : "short" }}</i></small
+        >
+      </li>
+    </ul>
+  </div>
+
+  <div class="answers-section" *ngIf="selectedQuestion">
+    <h4>Question: {{ selectedQuestion.text }}</h4>
+    <h5>Answers</h5>
+    <ul>
+      <li *ngFor="let answer of selectedQuestion.answers">
+        {{ answer.text }}
+        <small>{{ answer.date | date : "short" }}</small>
+      </li>
+    </ul>
+
+    <textarea #answerInput placeholder="Your answer here"></textarea>
+    <button class="submit-btn" (click)="addAnswer(answerInput.value)">
+      Submit Answer
+    </button>
+  </div>
+</div>

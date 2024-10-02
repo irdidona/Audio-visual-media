@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CommunityService } from './community.service';
 import { Question } from './question.model';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @Component({
   selector: 'app-community',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, InputTextareaModule],
   templateUrl: './community.component.html',
-  styleUrls: ['./community.component.css']
+  styleUrls: ['./community.component.css'],
 })
 export class CommunityComponent implements OnInit {
   questions: Question[] = [];
@@ -30,18 +31,25 @@ export class CommunityComponent implements OnInit {
 
   askQuestion(): void {
     if (this.newQuestion.trim()) {
-      this.communityService.addQuestion(this.newQuestion).subscribe((question: Question) => {
-        this.questions.push(question);
-        this.newQuestion = '';
-      });
+      this.communityService
+        .addQuestion(this.newQuestion)
+        .subscribe((question: Question) => {
+          this.questions.push(question);
+          this.newQuestion = '';
+        });
     }
   }
 
   addAnswer(answer: string): void {
     if (this.selectedQuestion && answer.trim()) {
-      this.communityService.addAnswer(this.selectedQuestion.id, answer).subscribe(() => {
-        this.selectedQuestion?.answers.push({ text: answer, date: new Date() });
-      });
+      this.communityService
+        .addAnswer(this.selectedQuestion.id, answer)
+        .subscribe(() => {
+          this.selectedQuestion?.answers.push({
+            text: answer,
+            date: new Date(),
+          });
+        });
     }
   }
 }
