@@ -32,7 +32,12 @@
       </li>
     </ul>
 
-    <textarea #answerInput placeholder="Your answer here"></textarea>
+    <textarea
+      rows="5"
+      pInputTextarea
+      #answerInput
+      placeholder="Your answer here"
+    ></textarea>
     <button class="submit-btn" (click)="addAnswer(answerInput.value)">
       Submit Answer
     </button>

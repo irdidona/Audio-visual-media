@@ -5,13 +5,14 @@ import { UserService } from './user.service';
 import { CommonModule } from '@angular/common';
 
 import { FormsModule } from '@angular/forms';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @Component({
   selector: 'app-user-profile',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, InputTextareaModule],
   templateUrl: './user-profile.component.html',
-  styleUrl: './user-profile.component.css'
+  styleUrl: './user-profile.component.css',
 })
 export class UserProfileComponent implements OnInit {
   user: User = {
@@ -19,7 +20,7 @@ export class UserProfileComponent implements OnInit {
     name: '',
     email: '',
     bio: '',
-    profilePictureUrl: ''
+    profilePictureUrl: '',
   };
   isEditing: boolean = false;
 

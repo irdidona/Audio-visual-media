@@ -1,27 +1,66 @@
-<div class="user-profile">
-    <img [src]="user?.profilePictureUrl" alt="{{ user?.name }}" class="profile-picture" />
-    
-    <h2>{{ user?.name }}</h2>
-    <p>{{ user?.email }}</p>
-    <p>{{ user?.bio }}</p>
-  
+<!-- <div class="user-profile">
+  <img
+    [src]="user?.profilePictureUrl"
+    alt="{{ user?.name }}"
+    class="profile-picture"
+  />
+
+  <h2>{{ user?.name }}</h2>
+  <p>{{ user?.email }}</p>
+  <p>{{ user?.bio }}</p>
+
+  <button *ngIf="!isEditing" (click)="enableEdit()">Edit Profile</button>
+
+  <div *ngIf="isEditing" class="edit-form">
+    <label>
+      Name:
+      <input [(ngModel)]="user.name" />
+    </label>
+    <label>
+      Email:
+      <input [(ngModel)]="user.email" />
+    </label>
+    <label>
+      Bio:
+      <textarea [(ngModel)]="user.bio"></textarea>
+    </label>
+    <button class="mx-3" (click)="saveProfile()">Save</button>
+    <button (click)="cancelEdit()">Cancel</button>
+  </div>
+</div> -->
+<div class="profile-card">
+  <div class="profile-header">
+    <img
+      [src]="user?.profilePictureUrl"
+      alt="{{ user?.name }}"
+      class="profile-img"
+    />
+    <h2 class="profile-name">{{ user?.name }}</h2>
+    <p class="profile-email">{{ user?.email }}</p>
+  </div>
+  <div class="profile-body">
+    <h3>Bio</h3>
+    <p>
+      {{ user.bio }}
+    </p>
+  </div>
+  <div class="button-group">
     <button *ngIf="!isEditing" (click)="enableEdit()">Edit Profile</button>
-  
-    <div *ngIf="isEditing" class="edit-form">
-      <label>
-        Name:
-        <input [(ngModel)]="user.name" />
-      </label>
-      <label>
-        Email:
-        <input [(ngModel)]="user.email" />
-      </label>
-      <label>
-        Bio:
-        <textarea [(ngModel)]="user.bio"></textarea>
-      </label>
+  </div>
+
+  <div *ngIf="isEditing" class="edit-form">
+    <label> Name: </label>
+    <input [(ngModel)]="user.name" />
+
+    <label> Email: </label>
+    <input [(ngModel)]="user.email" />
+
+    <label> Bio: </label>
+    <textarea pInputTextarea rows="5" [(ngModel)]="user.bio"></textarea>
+
+    <div class="button-group">
       <button (click)="saveProfile()">Save</button>
-      <button (click)="cancelEdit()">Cancel</button>
+      <button (click)="cancelEdit()" class="cancel-btn">Cancel</button>
     </div>
   </div>
-  
+</div>

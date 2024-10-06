@@ -12,14 +12,15 @@ import { AddTutorComponent } from './admin/add-tutor/add-tutor.component';
 import { ManageUsersComponent } from './admin/manage-users/manage-users.component';
 import { ManageCoursesComponent } from './admin/manage-courses/manage-courses.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { AdminGuard } from './admin.guard';
+import { adminGuard } from './admin.guard';
 
-export const routes: Routes = [{
+export const routes: Routes = [
+  {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
   },
   { path: 'tutors', component: TutorsPageComponent },
-  {path: 'courses', component: CourseListComponent},
+  { path: 'courses', component: CourseListComponent },
   { path: 'courses/:id', component: CoursesComponent },
   { path: 'course/add', component: CourseFormComponent },
   { path: 'profile', component: UserProfileComponent },
@@ -30,12 +31,13 @@ export const routes: Routes = [{
   {
     path: 'admin',
     component: DashboardComponent,
-    canActivate: [AdminGuard], // Admin guard to protect these routes
+    canActivate: [adminGuard], // Admin guard to protect these routes
     children: [
       { path: 'add-tutor', component: AddTutorComponent },
       { path: 'manage-users', component: ManageUsersComponent },
       { path: 'manage-courses', component: ManageCoursesComponent },
       // Other admin routes...
-    ]
+    ],
   },
-  { path: '', redirectTo: '/login', pathMatch: 'full' }];
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+];
