@@ -1,6 +1,8 @@
 const express = require('express');
+const adminController = require('../controllers/adminController');
+const adminMiddleware = require('../middleware/adminMiddleware');
 const router = express.Router();
 
-app.post('/api/admin/add-tutor', adminMiddleware, (req, res) => {
-    // logic to add a tutor
-  });
+router.post('/add-tutor', adminController.addTutor);
+
+module.exports = router;

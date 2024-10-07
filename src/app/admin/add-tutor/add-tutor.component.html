@@ -1,9 +1,36 @@
-<p>add-tutor works!</p>
-<h2>Add Tutor</h2>
-<form (ngSubmit)="addTutor()">
-  <label for="name">Name:</label>
-  <input type="text" id="name" [(ngModel)]="tutor.name" name="name">
-  <label for="email">Email:</label>
-  <input type="email" id="email" [(ngModel)]="tutor.email" name="email">
+<!-- add-tutor.component.html -->
+<form (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="name">First Name:</label>
+    <input type="text" id="name" [(ngModel)]="tutor.name" name="name" required />
+  </div>
+
+  <div class="form-group">
+    <label for="surname">Surname:</label>
+    <input type="text" id="surname" [(ngModel)]="tutor.surname" name="surname" required />
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" id="email" [(ngModel)]="tutor.email" name="email" required />
+  </div>
+
+  <div class="form-group">
+    <label for="courses">Courses:</label>
+    <select [(ngModel)]="tutor.courses" name="courses" multiple required>
+      <option *ngFor="let course of availableCourses" [value]="course">{{ course }}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="bio">Bio:</label>
+    <textarea id="bio" [(ngModel)]="tutor.bio" name="bio" rows="4" required></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="livestreaming">Livestreaming:</label>
+    <input type="checkbox" id="livestreaming" [(ngModel)]="tutor.livestreaming" name="livestreaming" />
+  </div>
+
   <button type="submit">Add Tutor</button>
 </form>

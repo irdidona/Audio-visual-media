@@ -2,9 +2,9 @@
   <div class="logo">
     <h1>E-Learn</h1>
   </div>
-  <div class="nav-center">
+  <div class="nav-center" >
     <nav>
-      <ul>
+      <ul  *ngIf="userName != 'admin'">
         <li><a (click)="navigateTo('')">Home</a></li>
         <li><a (click)="navigateTo('/courses')">Courses</a></li>
         <li><a (click)="navigateTo('/tutors')">Tutors</a></li>
@@ -16,7 +16,7 @@
     <ul>
       <li *ngIf="!isLoggedIn"><a (click)="navigateTo('login')">Login</a></li>
       <li *ngIf="!isLoggedIn"><a (click)="navigateTo('signup')">Sign Up</a></li>
-      <li *ngIf="isLoggedIn" (click)="navigateTo('profile')">
+      <li *ngIf="isLoggedIn && userName != 'admin'" (click)="navigateTo('profile')">
         <span>Hello, {{ userName }}</span>
       </li>
       <li *ngIf="isLoggedIn"><a (click)="logout()">Logout</a></li>

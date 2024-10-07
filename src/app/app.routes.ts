@@ -36,8 +36,8 @@ export const routes: Routes = [
       { path: 'add-tutor', component: AddTutorComponent },
       { path: 'manage-users', component: ManageUsersComponent },
       { path: 'manage-courses', component: ManageCoursesComponent },
-      // Other admin routes...
     ],
   },
+
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];

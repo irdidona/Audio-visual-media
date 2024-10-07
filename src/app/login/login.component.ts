@@ -23,7 +23,13 @@ export class LoginComponent {
       (response) => {
         console.log('Login successful', response);
         localStorage.setItem('token', response.token);
-        this.router.navigate(['/']);
+        if (response.role === 'admin') {
+         this.router.navigate(['/admin']);
+        }else{
+          this.router.navigate(['/']);
+
+        }
+
       },
       (error) => {
         console.error('Login failed', error);

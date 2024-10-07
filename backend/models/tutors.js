@@ -1,9 +1,14 @@
 const mongoose = require('mongoose');
 
-const TutorSchema = new mongoose.Schema({
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  courses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }],
-  liveStreaming: { type: Boolean, default: false },
+const tutorSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  surname: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  courses: { type: [String], required: true },  // Array of courses
+  bio: { type: String, required: true },
+  livestreaming: { type: Boolean, default: false }
 });
 
-module.exports = mongoose.model('Tutor', TutorSchema);
+const Tutor = mongoose.model('Tutor', tutorSchema);
+
+module.exports = Tutor;
