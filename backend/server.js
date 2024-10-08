@@ -4,7 +4,8 @@ const connectDB = require('./config/db');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
-const adminRoutes = require('./routes/adminRoutes'); // Import admin routes
+const adminRoutes = require('./routes/adminRoutes'); 
+const userRoutes = require('./routes/userRoutes');
 
 dotenv.config();
 connectDB();
@@ -16,7 +17,8 @@ app.use(bodyParser.json());
 
 // Authentication routes should come first
 app.use('/api/auth', authRoutes); 
-app.use('/api/admin', adminRoutes); // Admin routes come after authentication
+app.use('/api/admin', adminRoutes); 
+app.use('/api/users', userRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

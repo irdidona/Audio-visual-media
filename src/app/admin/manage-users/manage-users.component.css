@@ -1,0 +1,17 @@
+/* src/app/components/manage-users/manage-users.component.css */
+.container {
+    margin: 20px;
+  }
+  
+  .mat-card {
+    padding: 20px;
+  }
+  
+  .mat-table {
+    width: 100%;
+  }
+  
+  .mat-elevation-z4 {
+    margin-top: 15px;
+  }
+  
