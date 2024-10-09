@@ -1,0 +1,28 @@
+<p-dialog header="{{ isEditMode ? 'Edit User' : 'Add User' }}" [(visible)]="display" [modal]="true" [closable]="false" [responsive]="true">
+    <div class="p-fluid">
+      <!-- Name Field -->
+      <div class="p-field">
+        <label >Name</label>
+        <input id="name" type="text" pInputText [(ngModel)]="user.name" />
+      </div>
+  
+      <!-- Email Field -->
+      <div class="p-field">
+        <label >Email</label>
+        <input id="email" type="email" pInputText [(ngModel)]="user.email" />
+      </div>
+  
+      <!-- Role Field -->
+      <div class="p-field">
+        <label >Role</label>
+        <p-dropdown [options]="roles" [(ngModel)]="user.role" optionLabel="label" optionValue="value"></p-dropdown>
+      </div>
+    </div>
+  
+    <!-- Dialog Actions -->
+    <ng-template pTemplate="footer">
+      <button pButton label="Cancel" icon="pi pi-times" (click)="onCancel()"></button>
+      <button pButton label="{{ isEditMode ? 'Update' : 'Add' }}" icon="pi pi-check" (click)="onSave()" class="p-button-primary"></button>
+    </ng-template>
+  </p-dialog>
+  

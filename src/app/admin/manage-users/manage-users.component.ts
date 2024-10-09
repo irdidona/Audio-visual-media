@@ -4,13 +4,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatCard } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
-import { use } from 'video.js/dist/types/tech/middleware';
-
+import { MatDialog } from '@angular/material/dialog';
+import { UserDialogComponent } from '../../user-dialog/user-dialog.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-manage-users',
   standalone: true,
-  imports: [MatIconModule, MatToolbar, MatCard, MatTableModule],
+  imports: [MatIconModule, MatToolbar, MatCard, MatTableModule, CommonModule],
   templateUrl: './manage-users.component.html',
   styleUrl: './manage-users.component.css'
 })
@@ -19,7 +20,7 @@ export class ManageUsersComponent implements OnInit {
   users: any[] = [];
   displayedColumns: string[] = ['name', 'email', 'role', 'actions'];
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.loadUsers();
@@ -41,14 +42,39 @@ export class ManageUsersComponent implements OnInit {
 
   editUser(id: string) {
     console.log('Edit user', id);
-    let user = this.userService.getUser(id);
-    this.userService.updateUser(id,user).subscribe(
-      () => this.loadUsers(),
-      error => console.error('Error updating user', error)
-    ); 
+    const user = this.users.find(u => u.id === id);
+    const dialogRef = this.dialog.open(UserDialogComponent, {
+      width: '400px',
+      data: { user: user }  // Pass selected user data for editing
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Call API to update the user
+        this.userService.updateUser(user.id, result).subscribe(
+          () => this.loadUsers(),
+          error => console.error('Error updating user', error)
+        );
+      }
+    });
   }
 
   addUser() {
    console.log('Add user');
+
+   const dialogRef = this.dialog.open(UserDialogComponent, {
+    width: '400px',
+    data: { user: null }  // No user data for add user dialog
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      // Call API to add the user
+      this.userService.addUser(result).subscribe(
+        () => this.loadUsers(),
+        error => console.error('Error adding user', error)
+      );
+    }
+  });
   }
 }
