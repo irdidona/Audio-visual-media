@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatCard } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
+import { use } from 'video.js/dist/types/tech/middleware';
 
 
 @Component({
@@ -14,6 +15,7 @@ import { MatTableModule } from '@angular/material/table';
   styleUrl: './manage-users.component.css'
 })
 export class ManageUsersComponent implements OnInit {
+
   users: any[] = [];
   displayedColumns: string[] = ['name', 'email', 'role', 'actions'];
 
@@ -35,5 +37,18 @@ export class ManageUsersComponent implements OnInit {
       () => this.loadUsers(),
       error => console.error('Error deleting user', error)
     );
+  }
+
+  editUser(id: string) {
+    console.log('Edit user', id);
+    let user = this.userService.getUser(id);
+    this.userService.updateUser(id,user).subscribe(
+      () => this.loadUsers(),
+      error => console.error('Error updating user', error)
+    ); 
+  }
+
+  addUser() {
+   console.log('Add user');
   }
 }
