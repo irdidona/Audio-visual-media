@@ -2,12 +2,17 @@
 <div class="admin-container">
   <div class="sidebar">
     <ul>
-      <li><button><a (click)="navigateTo('/admin/add-tutor')">Add Tutor</a></button></li>
-      <li><a (click)="navigateTo('/admin/manage-users')" >Manage Users</a></li>
-      <li><a (click)="navigateTo('/admin/manage-courses')">Manage Courses</a></li>
+      <li>
+        <button mat-button (click)="addTutor()">Add Tutor</button>
+      </li>
+      <li><a (click)="navigateTo('/admin/manage-users')">Manage Users</a></li>
+      <li>
+        <a (click)="navigateTo('/admin/manage-courses')">Manage Courses</a>
+      </li>
     </ul>
   </div>
   <div class="content">
-    <router-outlet></router-outlet> <!-- Loads the selected section dynamically -->
+    <router-outlet></router-outlet>
+    <!-- Loads the selected section dynamically -->
   </div>
 </div>
