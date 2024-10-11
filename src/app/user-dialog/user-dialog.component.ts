@@ -1,33 +1,32 @@
-import { Component } from '@angular/core';
-import { User } from '../user-profile/user.model';
+import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Inject } from '@angular/core';
-import { DialogModule } from 'primeng/dialog';
-import { InputTextModule } from 'primeng/inputtext';
-import { DropdownModule } from 'primeng/dropdown';
-import { ButtonModule } from 'primeng/button';
-import { FormsModule } from '@angular/forms';
+import { User } from '../user-profile/user.model';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-user-dialog',
   standalone: true,
-  imports: [DialogModule, InputTextModule, DropdownModule, ButtonModule, FormsModule, CommonModule],
+  imports: [MatDialogModule, MatInputModule, MatButtonModule, MatSelectModule, CommonModule, FormsModule],
   templateUrl: './user-dialog.component.html',
-  styleUrl: './user-dialog.component.css'
+  styleUrls: ['./user-dialog.component.css'],
 })
 export class UserDialogComponent {
-  user: User = new User; // Create a new user object
+  user: User = new User(); // Create a new user object
   isEditMode: boolean = false;
   roles = [
     { label: 'Admin', value: 'admin' },
     { label: 'Tutor', value: 'tutor' },
-    { label: 'Student', value: 'student' }
+    { label: 'Student', value: 'student' },
   ];
-  display: boolean = true;
 
   constructor(
-    @Inject(MatDialogRef) public dialogRef: MatDialogRef<UserDialogComponent>,
+    public dialogRef: MatDialogRef<UserDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     if (data && data.user) {

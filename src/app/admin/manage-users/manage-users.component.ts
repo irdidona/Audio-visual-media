@@ -45,6 +45,7 @@ export class ManageUsersComponent implements OnInit {
     const user = this.users.find(u => u.id === id);
     const dialogRef = this.dialog.open(UserDialogComponent, {
       width: '400px',
+      position: { top: '50%', left: '50%', bottom: '50%' , right: '50%'},
       data: { user: user }  // Pass selected user data for editing
     });
 
@@ -64,6 +65,7 @@ export class ManageUsersComponent implements OnInit {
 
    const dialogRef = this.dialog.open(UserDialogComponent, {
     width: '400px',
+    position: { top: '50%', left: '50%', bottom: '50%' , right: '50%'},
     data: { user: null }  // No user data for add user dialog
   });
 
