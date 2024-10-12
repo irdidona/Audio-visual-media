@@ -1,28 +1,38 @@
-<h2 mat-dialog-title>{{ isEditMode ? 'Edit User' : 'Add User' }}</h2>
+<h2 mat-dialog-title>{{ isEditMode ? "Edit User" : "Add User" }}</h2>
 <mat-dialog-content>
   <form>
     <!-- Name Field -->
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="full-width">
       <mat-label>Name</mat-label>
       <input matInput [(ngModel)]="user.name" name="userName" required />
     </mat-form-field>
 
     <!-- Email Field -->
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="full-width">
       <mat-label>Email</mat-label>
-      <input matInput [(ngModel)]="user.email" name="userEmail" type="email" required />
+      <input
+        matInput
+        [(ngModel)]="user.email"
+        name="userEmail"
+        type="email"
+        required
+      />
     </mat-form-field>
 
     <!-- Role Field -->
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="full-width">
       <mat-label>Role</mat-label>
       <mat-select [(ngModel)]="user.role" name="userRole" required>
-        <mat-option *ngFor="let role of roles" [value]="role.value">{{ role.label }}</mat-option>
+        <mat-option *ngFor="let role of roles" [value]="role.value">{{
+          role.label
+        }}</mat-option>
       </mat-select>
     </mat-form-field>
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-button color="primary" (click)="onSave()">{{ isEditMode ? 'Update' : 'Add' }}</button>
+  <button mat-button color="primary" (click)="onSave()">
+    {{ isEditMode ? "Update" : "Add" }}
+  </button>
 </mat-dialog-actions>

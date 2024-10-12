@@ -1,24 +1,20 @@
-/* add-tutor.component.css */
-.form-group {
-    margin-bottom: 15px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  input, select, textarea {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-  }
-  
-  button {
-    background-color: #0056b3;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    cursor: pointer;
-  }
-  
+.tutor-form {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+button {
+  display: inline-block;
+  padding: 8px;
+  background-color: var(--main-color);
+  color: white !important;
+  border: none;
+  cursor: pointer;
+}
