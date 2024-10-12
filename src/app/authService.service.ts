@@ -14,6 +14,48 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
+
+  register(userData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, userData);
+  }
+
+  // login(credentials: any): Observable<any> {
+  //   this.loggedIn.next(true);
+  //   console.log('Login', credentials);
+  //   return this.http.post(`${this.apiUrl}/login`, credentials).pipe(  
+  //     tap((response) => { 
+  //       console.log('Login successful', response);
+  //      // localStorage.setItem('token', response.token);
+  //       this.userSubject.next(response);
+  //       //this.user = response
+        
+  //     }));
+  // }
+
+  login(credentials: any): Observable<any> {
+    this.loggedIn.next(true);
+    console.log('Login', credentials);
+  
+    return this.http.post(`${this.apiUrl}/login`, credentials).pipe(
+      tap((response: any) => {
+        console.log('Login successful', response);
+        
+        // Save the token in local storage
+        if (response.token) {
+          localStorage.setItem('token', response.token);
+        }
+  
+        // Update userSubject with the user data if it exists in the response
+        if (response.user) {
+          this.userSubject.next(response);
+        }
+        
+        // Optionally, you can set a flag for the user's authentication state
+        this.loggedIn.next(true);
+      })
+    );
+  }
+  
   isLoggedIn(): Observable<boolean> {
     // This should be replaced with a real API call
     return this.loggedIn.asObservable();
@@ -21,22 +63,6 @@ export class AuthService {
 
   getUserStatus(): Observable<any> {
     return this.userSubject.asObservable();
-  }
-
-  register(userData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, userData);
-  }
-
-  login(credentials: any): Observable<any> {
-    this.loggedIn.next(true);
-    return this.http.post(`${this.apiUrl}/login`, credentials).pipe(  
-      tap((response) => { 
-        console.log('Login successful', response);
-        //localStorage.setItem('token', response.token);
-        this.userSubject.next(response);
-        //this.user = response
-        
-      }));
   }
 
   logout() {

@@ -19,6 +19,7 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   onLogin() {
+    console.log('Login', this.credentials);
     this.authService.login(this.credentials).subscribe(
       (response) => {
         console.log('Login successful', response);

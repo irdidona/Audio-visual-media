@@ -41,11 +41,10 @@ export class ManageUsersComponent implements OnInit {
   }
 
   editUser(id: string) {
-    console.log('Edit user', id);
-    const user = this.users.find(u => u.id === id);
+    const user = this.users.find(u => u._id === id);
     const dialogRef = this.dialog.open(UserDialogComponent, {
       width: '400px',
-      position: { top: '50%', left: '50%', bottom: '50%' , right: '50%'},
+      disableClose: true, 
       data: { user: user }  // Pass selected user data for editing
     });
 
@@ -64,8 +63,9 @@ export class ManageUsersComponent implements OnInit {
    console.log('Add user');
 
    const dialogRef = this.dialog.open(UserDialogComponent, {
-    width: '400px',
-    position: { top: '50%', left: '50%', bottom: '50%' , right: '50%'},
+    width: '50vw',  // Set dialog width to 50% of viewport width
+    maxWidth: '400px',  // Set maximum width
+    disableClose: true, 
     data: { user: null }  // No user data for add user dialog
   });
 

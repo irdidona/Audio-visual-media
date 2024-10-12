@@ -58,6 +58,9 @@
     <label> Bio: </label>
     <textarea pInputTextarea rows="5" [(ngModel)]="user.bio"></textarea>
 
+    <label> Profile Picture: </label>
+    <input type="file" (change)="onFileSelected($event)" />
+
     <div class="button-group">
       <button (click)="saveProfile()">Save</button>
       <button (click)="cancelEdit()" class="cancel-btn">Cancel</button>

@@ -18,6 +18,9 @@ app.use(bodyParser.json());
 // Authentication routes should come first
 app.use('/api/auth', authRoutes); 
 app.use('/api/admin', adminRoutes); 
+
+// Serve static files from the uploads directory
+app.use('/uploads', express.static('uploads'));
 app.use('/api/users', userRoutes);
 
 const PORT = process.env.PORT || 3000;

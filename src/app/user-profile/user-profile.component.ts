@@ -15,6 +15,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
   styleUrl: './user-profile.component.css',
 })
 export class UserProfileComponent implements OnInit {
+
   user: User = {
     id: 0,
     name: '',
@@ -34,6 +35,20 @@ export class UserProfileComponent implements OnInit {
 
   enableEdit(): void {
     this.isEditing = true;
+  }
+
+  onFileSelected(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.user.profilePictureUrl = reader.result as string;
+      };
+      reader.onerror = (error) => {
+        console.error('Error converting file to base64:', error);
+      };
+    }
   }
 
   saveProfile(): void {
