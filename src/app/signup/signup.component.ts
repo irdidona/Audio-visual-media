@@ -18,6 +18,9 @@ export class SignupComponent {
     email: '',
     password: '',
     role: 'student',
+    profilePictureUrl: '',
+    bio: ''
+
   };
 
   options = [

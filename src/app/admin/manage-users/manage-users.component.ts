@@ -25,7 +25,7 @@ import { MatButton } from '@angular/material/button';
 })
 export class ManageUsersComponent implements OnInit {
   users: any[] = [];
-  displayedColumns: string[] = ['name', 'email', 'role', 'actions'];
+  displayedColumns: string[] = ['name', 'email', 'role', 'bio', 'actions'];
 
   constructor(private userService: UserService, public dialog: MatDialog) {}
 
@@ -50,17 +50,18 @@ export class ManageUsersComponent implements OnInit {
   editUser(id: string) {
 
     console.log('Edit user', id);
-    const user = this.users.find((u) => u.id === id);
+    const user = this.users.find((u) => u._id === id);
     const dialogRef = this.dialog.open(UserDialogComponent, {
       width: '400px',
-      position: { top: '50%', left: '50%', bottom: '50%', right: '50%' },
       data: { user: user }, // Pass selected user data for editing
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        // Call API to update the user
-        this.userService.updateUser(user.id, result).subscribe(
+        // Call API to update the usere
+        console.log('Update user', result);
+        console.log(user.id);
+        this.userService.updateUser(id, result).subscribe(
           () => this.loadUsers(),
           (error) => console.error('Error updating user', error)
         );

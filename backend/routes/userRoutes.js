@@ -73,7 +73,7 @@ router.post('/users', async (req, res) => {
   });
 
   try {
-    const newUser = await user.save();
+    const newUser = await User.create();
     res.status(201).json(newUser);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -82,6 +82,7 @@ router.post('/users', async (req, res) => {
 
 // Update a user
 router.put('/users/:id', async (req, res) => {
+    console.log(req.body);
     const { name, email, password, role, bio, profilePicture } = req.body;
 
   try {
