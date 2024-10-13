@@ -1,0 +1,25 @@
+.dialog-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .chapter-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px; /* Spacing between the form fields */
+  }
+  
+  .form-field {
+    width: 100%;
+  }
+  
+  .file-upload {
+    margin-top: 8px;
+  }
+  
+  mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+  }
+  

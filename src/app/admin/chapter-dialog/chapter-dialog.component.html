@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>{{ isEditMode ? 'Edit Chapter' : 'Add Chapter' }}</h2>
+<mat-dialog-content class="dialog-content">
+  <form class="chapter-form">
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Title</mat-label>
+      <input matInput [(ngModel)]="chapter.title" name="title" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Description</mat-label>
+      <textarea matInput [(ngModel)]="chapter.description" name="description"></textarea>
+    </mat-form-field>
+
+    <div class="form-field file-upload">
+      <label for="video">Upload Video</label>
+      <input type="file" (change)="onFileSelected($event)" accept="video/*" />
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button (click)="onSave()" [disabled]="!chapter.title || !selectedFile">Save</button>
+</mat-dialog-actions>

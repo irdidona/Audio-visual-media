@@ -1,0 +1,22 @@
+.mat-dialog-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 500px; /* Adjust as necessary */
+  }
+  
+  /* Optional: Style the dialog content */
+  mat-dialog-content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  mat-form-field {
+    margin-bottom: 20px; /* Space between fields */
+  }
+  
+  mat-dialog-actions {
+    justify-content: flex-end; /* Align buttons to the right */
+  }
+  

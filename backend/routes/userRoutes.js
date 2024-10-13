@@ -102,7 +102,7 @@ router.put('/users/:id', async (req, res) => {
     }
 
     // Find the user by ID and update it with the new data
-    const updatedUser = await User.findByIdAndUpdate(req.params.id, updatedFields, { new: true });
+    const updatedUser = await User.findByIdAndUpdate(req.params._id, updatedFields, { new: true });
 
     // Check if the user was found
     if (!updatedUser) {

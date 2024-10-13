@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>{{ isEditMode ? 'Edit Course' : 'Add Course' }}</h2>
+<mat-dialog-content>
+  <form>
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput [(ngModel)]="course.title" name="title" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea matInput [(ngModel)]="course.description" name="description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Image URL</mat-label>
+      <input matInput [(ngModel)]="course.img" name="imageUrl">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Teacher</mat-label>
+      <mat-select [(ngModel)]="course.teacher" name="teacher" required>
+        <mat-option *ngFor="let teacher of teachers" [value]="teacher._id">
+          {{ teacher.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button color="primary" style="margin-right: 15px;" (click)="onAddChapter()">Add Chapter</button>
+
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button (click)="onSave()" [disabled]="!course.title || !course.teacher">Save</button>
+</mat-dialog-actions>
