@@ -8,7 +8,7 @@ const generateToken = (id) => {
 };
 
 exports.register = async (req, res) => {
-  const { name, email, password, role, profilePictureUrl, bio } = req.body;
+  const { name, email, password, role,bio, profilePictureUrl } = req.body;
 
   const userExists = await User.findOne({ email });
   if (userExists) {

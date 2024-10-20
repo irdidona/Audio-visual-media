@@ -18,26 +18,9 @@ UserSchema.pre('save', async function (next) {
   next();
 });
 
-// UserSchema.methods.matchPassword = async function (enteredPassword) {
-//   return await bcrypt.compare(enteredPassword, this.password);
-// };
-
 UserSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
   };
 
-// module.exports = mongoose.model('User', UserSchema);
-
-
-// models/User.js
-// const mongoose = require('mongoose');
-
-// const userSchema = new mongoose.Schema({
-//     name: String,
-//     email: String,
-//     role: { type: String, enum: ['admin', 'tutor', 'student'], default: 'student' },
-//     active: { type: Boolean, default: true },
-//     createdAt: { type: Date, default: Date.now }
-// });
 
 module.exports = mongoose.model('User', UserSchema);

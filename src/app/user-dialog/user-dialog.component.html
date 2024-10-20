@@ -3,7 +3,7 @@
   <form>
     <!-- Name Field -->
     <mat-form-field appearance="fill" class="full-width">
-      <mat-label>Name</mat-label>
+      <mat-label>Full Name</mat-label>
       <input matInput [(ngModel)]="user.name" name="userName" required />
     </mat-form-field>
 
@@ -15,6 +15,17 @@
         [(ngModel)]="user.email"
         name="userEmail"
         type="email"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        [(ngModel)]="user.password"
+        name="userPassword"
+        type="password"
         required
       />
     </mat-form-field>
@@ -34,6 +45,13 @@
       <textarea matInput placeholder="Enter your description" rows="5" cols="40"  [(ngModel)]="user.bio"
       name="userBio"></textarea>
     </mat-form-field>
+
+
+      <mat-label>Profile Picture</mat-label>
+      <input type="file" (change)="onFileSelected($event)" /> 
+
+
+
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>

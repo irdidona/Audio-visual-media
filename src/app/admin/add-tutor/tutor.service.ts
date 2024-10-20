@@ -7,7 +7,7 @@ import { Tutor } from './Tutor.model';
   providedIn: 'root'
 })
 export class TutorService {
-  private apiUrl = 'http://localhost:3000/api/admin'; // Replace with your backend URL
+  private apiUrl = 'http://localhost:3000/api/admin'; 
 
   constructor(private http: HttpClient) {}
 

@@ -20,8 +20,9 @@ export class UserProfileComponent implements OnInit {
     id: 0,
     name: '',
     email: '',
+    password: '',
     bio: '',
-    profilePictureUrl: '',
+    profilePicture: '',
   };
   isEditing: boolean = false;
 
@@ -39,11 +40,12 @@ export class UserProfileComponent implements OnInit {
 
   onFileSelected(event: any): void {
     const file = event.target.files[0];
+    console.log('Selected file:', file);
     if (file) {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-        this.user.profilePictureUrl = reader.result as string;
+        this.user.profilePicture = reader.result as string;
       };
       reader.onerror = (error) => {
         console.error('Error converting file to base64:', error);

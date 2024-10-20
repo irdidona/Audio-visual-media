@@ -2,19 +2,16 @@ const mongoose = require('mongoose');
 
 const CourseSchema = new mongoose.Schema({
   title: { type: String, required: true },
-  imageUrl: { type: String },
+  imageUrl: { type: Buffer },
   description: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
-  teacher: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  teacher: { type: mongoose.Schema.Types.ObjectId, ref: 'Tutor', required: true },
   chapters: [
     {
-      chapterTitle: String,
-      videoUrl: String,
-      description: String,
-      explanation: String,
-      
-    }
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Chapter',
+    },
   ],
 });
 

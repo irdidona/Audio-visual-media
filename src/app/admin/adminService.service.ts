@@ -13,11 +13,11 @@ export class AdminService {
     return this.http.post(`${this.apiUrl}/add-tutor`, tutor);
   }
 
-  manageUsers() {
-    return this.http.get(`${this.apiUrl}/users`);
-  }
+  // manageUsers() {
+  //   return this.http.get(`${this.apiUrl}/users`);
+  // }
 
-  manageCourses() {
-    return this.http.get(`${this.apiUrl}/courses`);
-  }
+  // manageCourses() {
+  //   return this.http.get(`${this.apiUrl}/courses`);
+  // }
 }

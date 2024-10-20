@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class UserDialogComponent {
   user: User = new User(); // Create a new user object
+  selectedFile: File | null = null;
   isEditMode: boolean = false;
   roles = [
     { label: 'Admin', value: 'admin' },
@@ -38,6 +39,31 @@ export class UserDialogComponent {
   onSave(): void {
     this.dialogRef.close(this.user); // Return the updated/new user data when the dialog is saved
   }
+
+  onFileSelected(event: any) {
+    // const file: File = event.target.files[0];
+    // if (file) {
+    //   this.selectedFile = file;
+    // }
+
+    const file = event.target.files[0];
+    console.log('Selected file:', file);
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      console.log('Reader:', reader);
+      reader.onload = () => {
+        console.log('Reader result:', reader.result);
+        this.user.profilePicture = reader.result as Buffer;
+        console.log('USER PROFILE PICTURE:', this.user.profilePicture);
+      };
+      reader.onerror = (error) => {
+        console.error('Error converting file to base64:', error);
+      };
+    }
+  }
+
+
 
   onCancel(): void {
     this.dialogRef.close(); // Close the dialog without saving changes

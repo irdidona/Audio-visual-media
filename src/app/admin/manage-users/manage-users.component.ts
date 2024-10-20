@@ -47,6 +47,8 @@ export class ManageUsersComponent implements OnInit {
     );
   }
 
+
+
   editUser(id: string) {
 
     console.log('Edit user', id);
@@ -60,7 +62,7 @@ export class ManageUsersComponent implements OnInit {
       if (result) {
         // Call API to update the usere
         console.log('Update user', result);
-        console.log(user.id);
+        console.log(id);
         this.userService.updateUser(id, result).subscribe(
           () => this.loadUsers(),
           (error) => console.error('Error updating user', error)
