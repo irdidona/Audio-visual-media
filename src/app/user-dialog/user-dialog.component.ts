@@ -41,10 +41,6 @@ export class UserDialogComponent {
   }
 
   onFileSelected(event: any) {
-    // const file: File = event.target.files[0];
-    // if (file) {
-    //   this.selectedFile = file;
-    // }
 
     const file = event.target.files[0];
     console.log('Selected file:', file);

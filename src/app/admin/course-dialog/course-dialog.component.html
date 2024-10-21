@@ -12,11 +12,6 @@
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Image URL</mat-label>
-      <input matInput [(ngModel)]="course.img" name="imageUrl">
-    </mat-form-field>
-
-    <mat-form-field>
       <mat-label>Teacher</mat-label>
       <mat-select [(ngModel)]="course.teacher" name="teacher" required>
         <mat-option *ngFor="let teacher of teachers" [value]="teacher._id">
@@ -24,6 +19,10 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+
+    <mat-label>Image URL</mat-label>
+    <input type="file" (change)="onFileSelected($event)" /> 
+    <img [src]="course.img" *ngIf="course.img" style="width: 100px; height: 100px; margin-left: 10px;">
     
   </form>
 </mat-dialog-content>

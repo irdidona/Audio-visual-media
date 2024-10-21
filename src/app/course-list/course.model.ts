@@ -6,15 +6,15 @@ export interface QuizQuestion {
 
 export interface Chapter {
   title: string;
-  videoUrl: string;
+  videoUrl: Buffer | string;
   description: string;
   explanation: string;
   quiz: QuizQuestion[];
 }
 
 export interface Course {
-  id?: number;
-  img?: string;
+  id?: any;
+  img?: Buffer | string;
   title: string;
   description: string;
   teacher: string;

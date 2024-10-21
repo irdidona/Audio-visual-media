@@ -14,4 +14,8 @@ export class TutorService {
   addTutor(tutorData: Tutor): Observable<any> {
     return this.http.post(`${this.apiUrl}/add-tutor`, tutorData);
   }
+
+  getTutors(): Observable<Tutor[]> {
+    return this.http.get<Tutor[]>(`${this.apiUrl}/tutors`);
+  }
 }

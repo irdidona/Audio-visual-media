@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { Course } from '../../course-list/course.model'; // Ensure Course is a class or interface that can be instantiated
+import { Course } from '../../course-list/course.model'; 
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 import { ChapterDialogComponent } from '../chapter-dialog/chapter-dialog.component';
@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TutorService } from '../add-tutor/tutor.service';
 
 @Component({
   selector: 'app-course-dialog',
@@ -36,7 +37,8 @@ export class CourseDialogComponent {
     private dialogRef: MatDialogRef<CourseDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private http: HttpClient,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private tutorService: TutorService
   ) {
     if (data.course) {
       this.course = { ...data.course };
@@ -48,8 +50,28 @@ export class CourseDialogComponent {
     this.loadTeachers();
   }
 
+  onFileSelected(event: any) {
+
+    const file = event.target.files[0];
+    console.log('Selected file:', file);
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      console.log('Reader:', reader);
+      reader.onload = () => {
+        console.log('Reader result:', reader.result);
+        this.course.img = reader.result as Buffer;
+        console.log('course image:', this.course.img);
+      };
+      reader.onerror = (error) => {
+        console.error('Error converting file to base64:', error);
+      };
+    }
+  }
+
+
   loadTeachers(): void {
-    this.http.get<any[]>('http://localhost:3000/api/teachers').subscribe(
+    this.tutorService.getTutors().subscribe(
       (response) => {
         this.teachers = response;
       },
