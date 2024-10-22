@@ -61,9 +61,18 @@ export class ChapterDialogComponent implements OnInit {
   }
 
   onSave(): void {
-    // if (this.selectedFile) {
-    //   this.chapter.videoUrl = this.selectedFile;
-    // }
+    if (this.selectedFile) {
+      const reader = new FileReader();
+      reader.readAsDataURL(this.selectedFile as File);
+      reader.onload = () => {
+        this.chapter.videoUrl = reader.result as string;
+        this.dialogRef.close(this.chapter);
+      };
+      reader.onerror = (error) => {
+        console.error('Error converting file to base64:', error);
+        this.dialogRef.close();
+      };
+    }
     this.dialogRef.close(this.chapter);
   }
 }

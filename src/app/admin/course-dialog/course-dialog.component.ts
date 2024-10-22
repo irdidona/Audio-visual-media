@@ -11,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TutorService } from '../add-tutor/tutor.service';
+import { ChapterService } from '../chapter-dialog/chapter.service';
 
 @Component({
   selector: 'app-course-dialog',
@@ -38,7 +39,8 @@ export class CourseDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private http: HttpClient,
     private dialog: MatDialog,
-    private tutorService: TutorService
+    private tutorService: TutorService,
+    private chapterService: ChapterService
   ) {
     if (data.course) {
       this.course = { ...data.course };
@@ -93,6 +95,14 @@ export class CourseDialogComponent {
 
     dialogRef.afterClosed().subscribe((chapter) => {
       if (chapter) {
+        this.chapterService.createChapter(chapter).subscribe((response) => {
+          console.log('Chapter created:', response);
+          this.course.chapters.push(chapter);
+
+        }, (error) => {
+          console.error('Failed to create chapter:', error);
+
+        });
         console.log('Chapter added:', chapter);
       }
     });

@@ -6,16 +6,8 @@ const storage = multer.memoryStorage();
 // Set up the upload middleware with file type validation
 const upload = multer({
   storage: storage,
-  fileFilter: function (req, file, cb) {
-    // Accept only images and videos
-    if (file.mimetype.startsWith('video') || file.mimetype.startsWith('image')) {
-      cb(null, true);
-    } else {
-      cb(new Error('Invalid file type. Only images and videos are allowed.'), false);
-    }
-  },
   limits: {
-    fileSize: 50 * 1024 * 1024, // Limit the file size to 50MB
+    fileSize: 1000 * 1024 * 1024, // Limit the file size to 1000MB
   },
 });
 

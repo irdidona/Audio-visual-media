@@ -7,6 +7,7 @@ const authRoutes = require("./routes/authRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const userRoutes = require("./routes/userRoutes");
 const courseRoutes = require("./routes/courseRoutes");
+const chapterRoutes = require("./routes/chapterRoutes");
 
 
 dotenv.config();
@@ -16,18 +17,20 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
+// Serve static files from the uploads directory
+app.use(bodyParser.json({ limit: '1000mb' }));
+app.use(bodyParser.urlencoded({ limit: '1000mb', extended: true }));
+
+app.use(cors());
 
 // Authentication routes should come first
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
 
-// Serve static files from the uploads directory
-//app.use("/uploads", express.static("uploads"));
-app.use(bodyParser.json({ limit: '10mb' }));
-app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 app.use("/api/users", userRoutes);
 
 app.use("/api/courses", courseRoutes);
+app.use("/api/chapters", chapterRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
