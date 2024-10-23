@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ChapterService } from './chapter.service';
 
 @Component({
   selector: 'app-chapter-dialog',
@@ -28,6 +29,7 @@ export class ChapterDialogComponent implements OnInit {
 
   constructor(
     private dialogRef: MatDialogRef<ChapterDialogComponent>,
+    private chapterService: ChapterService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     if (data.chapter) {
@@ -40,20 +42,7 @@ export class ChapterDialogComponent implements OnInit {
 
   onFileSelected(event: any): void {
     const file = event.target.files[0];
-    console.log('Selected file:', file);
-    if (file) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      console.log('Reader:', reader);
-      reader.onload = () => {
-        console.log('Reader result:', reader.result);
-        this.chapter.videoUrl = reader.result as Buffer;
-        console.log('chapter video url:', this.chapter.videoUrl);
-      };
-      reader.onerror = (error) => {
-        console.error('Error converting file to base64:', error);
-      };
-    }
+    this.chapter.videoUrl=file
   }
 
   onCancel(): void {
@@ -61,18 +50,24 @@ export class ChapterDialogComponent implements OnInit {
   }
 
   onSave(): void {
-    if (this.selectedFile) {
-      const reader = new FileReader();
-      reader.readAsDataURL(this.selectedFile as File);
-      reader.onload = () => {
-        this.chapter.videoUrl = reader.result as string;
-        this.dialogRef.close(this.chapter);
-      };
-      reader.onerror = (error) => {
-        console.error('Error converting file to base64:', error);
-        this.dialogRef.close();
-      };
-    }
-    this.dialogRef.close(this.chapter);
+  const formData=new FormData();
+  formData.append('title',this.chapter.title);
+  formData.append('description',this.chapter.description);
+  formData.append('explanation',this.chapter.explanation);
+
+  formData.append('video',this.chapter.videoUrl, this.chapter.videoUrl.name);
+ 
+  console.log(formData)
+
+  this.chapterService.createChapter(formData).subscribe((response) => {
+    console.log('Chapter created:', response);
+  
+    this.dialogRef.close(response);
+
+  }, (error) => {
+    console.error('Failed to create chapter:', error);
+
+  });
+
   }
 }

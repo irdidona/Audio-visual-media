@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { Tutor } from './tutors.model';
-import { TutorService } from './tutor.service';
+import { Tutor } from '../admin/add-tutor/Tutor.model';
+import { TutorService } from '../admin/add-tutor/tutor.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -18,7 +18,7 @@ export class TutorsPageComponent implements OnInit {
   constructor(private tutorService: TutorService) {}
 
   ngOnInit(): void {
-    this.tutorService.getTutors().subscribe((data: Tutor[]) => {
+    this.tutorService.getTutors().subscribe((data) => {
       this.tutors = data;
     });
   }

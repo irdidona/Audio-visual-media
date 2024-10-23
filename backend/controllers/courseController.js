@@ -32,7 +32,7 @@ exports.createCourse = async (req, res) => {
 // Get all courses
 exports.getCourses = async (req, res) => {
     try {
-        const courses = await Course.find().populate('teacher');
+        const courses = await Course.find().populate('teacher').populate('chapters');
         res.status(200).json(courses);
     } catch (error) {
         res.status(500).json({ message: 'Failed to get courses', error });
@@ -42,7 +42,7 @@ exports.getCourses = async (req, res) => {
 // Get a single course by ID
 exports.getCourseById = async (req, res) => {
     try {
-        const course = await Course.findById(req.params.id).populate('teacher');
+        const course = await Course.findById(req.params.id).populate('teacher').populate('chapters');
         if (!course) {
             return res.status(404).json({ message: 'Course not found' });
         }
@@ -57,8 +57,8 @@ exports.updateCourse = async (req, res) => {
    
     try {
         const { id } = req.params; // Course ID from the URL parameter
-    const { title, description, teacher } = req.body;
-    let updatedFields = { title, description, teacher, updatedAt: Date.now() };
+    const { title, description, teacher, chapters } = req.body;
+    let updatedFields = { title, description, teacher, updatedAt: Date.now(), chapters };
 
     // Check if a new image is provided
     if (req.body.img) {

@@ -38,13 +38,13 @@ export class CourseFormComponent implements OnInit {
     this.courseId = this.route.snapshot.params['id'];
     this.courseForm.patchValue({ teacher: 'Logged-in Teacher Name' }); // Replace with actual logged-in teacher
 
-    if (this.courseId) {
-      this.isEditMode = true;
-      this.courseService.getCourseById(this.courseId).subscribe((course: any) => {
-        this.courseForm.patchValue(course);
-        this.setChapters(course.chapters);
-      });
-    }
+    // if (this.courseId) {
+    //   this.isEditMode = true;
+    //   this.courseService.getCourseById(this.courseId).subscribe((course: any) => {
+    //     this.courseForm.patchValue(course);
+    //     this.setChapters(course.chapters);
+    //   });
+    // }
   }
 
   get chapters(): FormArray {
@@ -88,15 +88,15 @@ export class CourseFormComponent implements OnInit {
         teacher: 'Logged-in Teacher Name' // Replace with actual logged-in teacher
       };
 
-      if (this.isEditMode) {
-        this.courseService.updateCourse(this.courseId!, courseData).subscribe(() => {
-          this.router.navigate(['/courses']);
-        });
-      } else {
-        this.courseService.addCourse(courseData).subscribe(() => {
-          this.router.navigate(['/courses']);
-        });
-      }
+      // if (this.isEditMode) {
+      //   this.courseService.updateCourse(this.courseId!, courseData).subscribe(() => {
+      //     this.router.navigate(['/courses']);
+      //   });
+      // } else {
+      //   this.courseService.addCourse(courseData).subscribe(() => {
+      //     this.router.navigate(['/courses']);
+      //   });
+      // }
     }
   }
 

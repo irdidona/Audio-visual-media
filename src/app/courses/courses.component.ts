@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { CourseService } from '../course-list/course.service';
+import { CourseService } from '../admin/manage-courses/course.service';
 import { Course, Chapter } from '../course-list/course.model';
 
 @Component({
@@ -21,9 +21,10 @@ export class CoursesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const courseId = Number(this.route.snapshot.paramMap.get('id'));
+    const courseId = this.route.snapshot.paramMap.get('id')!;
     this.courseService.getCourseById(courseId).subscribe((course: any) => {
       this.course = course;
+      console.log('Course:', course);
       this.selectedChapter = course.chapters[0]; // Default to the first chapter
     });
   }

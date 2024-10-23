@@ -4,6 +4,7 @@ const chapterController = require('../controllers/chapterController');
 const router = express.Router();
 
 // Route to create a chapter with a video upload
-router.post('/add-chapter', upload.single('videoUrl'), chapterController.createChapter);
+router.post('/add-chapter', upload.single('video'), chapterController.createChapter);
 
 module.exports = router;
+

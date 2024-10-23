@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { CourseService } from './course.service';
+import { CourseService } from '../admin/manage-courses/course.service';
 import { Course } from './course.model';
 
 @Component({
@@ -18,8 +18,9 @@ export class CourseListComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('Getting courses...');
-    this.courseService.getCourses().subscribe((data: Course[]) => {
-      console.log(data);
+    this.courseService.getCourses().subscribe(data => {
+      console.log("Kurseeeeettttt",data);
+      
       this.courses = data;
     });
   }

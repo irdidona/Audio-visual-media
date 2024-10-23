@@ -28,7 +28,6 @@
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button mat-raised-button color="primary" style="margin-right: 15px;" (click)="onAddChapter()">Add Chapter</button>
 
   <button mat-button (click)="onCancel()">Cancel</button>
   <button mat-button (click)="onSave()" [disabled]="!course.title || !course.teacher">Save</button>

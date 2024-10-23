@@ -14,7 +14,13 @@
     <div class="form-field file-upload">
       <label for="video">Upload Video</label>
       <input type="file" (change)="onFileSelected($event)" accept="video/*" />
+      <video #videoPreview controls></video>
     </div>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Explenation</mat-label>
+      <textarea matInput [(ngModel)]="chapter.explanation" name="explanation"></textarea>
+    </mat-form-field>
   </form>
 </mat-dialog-content>
 

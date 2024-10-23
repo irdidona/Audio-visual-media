@@ -10,6 +10,8 @@ import { MatButton } from '@angular/material/button';
 import { CourseDialogComponent } from '../course-dialog/course-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { CourseService } from './course.service';
+import { ChapterService } from '../chapter-dialog/chapter.service';
+import { ChapterDialogComponent } from '../chapter-dialog/chapter-dialog.component';
 
 @Component({
   selector: 'app-manage-courses',
@@ -22,7 +24,8 @@ export class ManageCoursesComponent implements OnInit {
   courses: Course[] = [];
   displayedColumns: string[] = ['title', 'description', 'createdAt', 'updatedAt', 'teacher', 'chaptersCount', 'actions'];
 
-  constructor(private courseService: CourseService, public dialog: MatDialog) { }
+  constructor(private courseService: CourseService, public dialog: MatDialog,
+    private chapterService: ChapterService) { }
 
   ngOnInit(): void {
     this.loadCourses();
@@ -69,8 +72,8 @@ export class ManageCoursesComponent implements OnInit {
       data: { course: course }  // Pass course data to dialog
     });
     dialogRef.afterClosed().subscribe(result => {
-        if (course.id !== undefined) {
-        this.courseService.updateCourse(course.id, result).subscribe(() => {
+        if (course._id !== undefined) {
+        this.courseService.updateCourse(course._id, result).subscribe(() => {
         this.loadCourses();
         }, error => {
         console.error('Error updating course', error);
@@ -84,12 +87,40 @@ export class ManageCoursesComponent implements OnInit {
     console.log('Delete course', course);
 
     const confirmDelete = confirm('Are you sure you want to delete this course?');
-      if (course.id !== undefined) {
-        this.courseService.deleteCourse(course.id).subscribe(() => {
+      if (course._id !== undefined) {
+        this.courseService.deleteCourse(course._id).subscribe(() => {
         this.loadCourses();
       }, error => {
         console.error('Error deleting course', error);
       });
     }
+  }
+
+  onAddChapter(course: Course): void {
+
+    const dialogRef = this.dialog.open(ChapterDialogComponent, {
+      data: { 
+        width: '50vw',  // Set dialog width to 50% of viewport width
+        maxWidth: '300px',  // Set maximum width
+        disableClose: true, 
+        chapter: null,
+        courseId: course._id  // Pass course ID to dialog
+       },
+    });
+
+    dialogRef.afterClosed().subscribe((chapter) => {
+      if (chapter) {
+        console.log('Chapter:', chapter);
+        course.chapters.push(chapter._id);
+        console.log('Course:', course);
+        this.courseService.updateCourse(course._id, course).subscribe(() => {
+          this.loadCourses();
+        }, error => {
+          console.error('Error updating course', error);
+        });
+       
+      }
+    });
+
   }
 }

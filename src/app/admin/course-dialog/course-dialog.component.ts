@@ -12,6 +12,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TutorService } from '../add-tutor/tutor.service';
 import { ChapterService } from '../chapter-dialog/chapter.service';
+import { Tutor } from '../add-tutor/Tutor.model';
+import { CourseService } from '../manage-courses/course.service';
 
 @Component({
   selector: 'app-course-dialog',
@@ -22,11 +24,11 @@ import { ChapterService } from '../chapter-dialog/chapter.service';
 })
 export class CourseDialogComponent {
   course: Course = {
-    id: 0,
+    _id: 0,
     img: '',
     title: '',
     description: '',
-    teacher: '',
+    teacher: new Tutor,
     createdAt: new Date(),
     updatedAt: new Date(),
     chapters: []
@@ -38,9 +40,7 @@ export class CourseDialogComponent {
     private dialogRef: MatDialogRef<CourseDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private http: HttpClient,
-    private dialog: MatDialog,
     private tutorService: TutorService,
-    private chapterService: ChapterService
   ) {
     if (data.course) {
       this.course = { ...data.course };
@@ -83,30 +83,7 @@ export class CourseDialogComponent {
     );
   }
 
-  onAddChapter(): void {
-    this.dialogRef.close(this.course);
-    const dialogRef = this.dialog.open(ChapterDialogComponent, {
-      data: { 
-        width: '50vw',  // Set dialog width to 50% of viewport width
-        maxWidth: '300px',  // Set maximum width
-        disableClose: true, 
-        chapter: null },
-    });
 
-    dialogRef.afterClosed().subscribe((chapter) => {
-      if (chapter) {
-        this.chapterService.createChapter(chapter).subscribe((response) => {
-          console.log('Chapter created:', response);
-          this.course.chapters.push(chapter);
-
-        }, (error) => {
-          console.error('Failed to create chapter:', error);
-
-        });
-        console.log('Chapter added:', chapter);
-      }
-    });
-  }
 
   onCancel(): void {
     this.dialogRef.close();

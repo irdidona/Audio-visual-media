@@ -12,8 +12,12 @@ import { HttpClient } from "@angular/common/http";
      constructor(private http: HttpClient) { }
 
      // Create a new chapter
-     createChapter(chapter: Chapter): Observable<Chapter> {
+     createChapter(chapter: any): Observable<Chapter> {
         return this.http.post<Chapter>(`${this.apiUrl}/add-chapter`, chapter);
+     }
+
+     getChapterByCourseId(courseId: string): Observable<Chapter[]> {
+        return this.http.get<Chapter[]>(`${this.apiUrl}/getByCourseId/${courseId}`);
      }
       
 
