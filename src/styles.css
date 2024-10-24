@@ -17,6 +17,14 @@ button {
   cursor: pointer;
 }
 
+.add-btn {
+  background-color: #2fb948 !important;
+}
+
+.edit-btn {
+  background-color: rgb(121, 225, 121) !important;
+}
+
 .full-width {
   width: 100%;
 }

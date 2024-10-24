@@ -8,13 +8,11 @@
   font-size: 2rem;
 }
 
-.course-list {
+.courses-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  flex-direction: column;
   gap: 20px;
-  justify-content: space-between;
 }
 
 .course {
@@ -24,8 +22,10 @@
   margin: 10px;
   padding: 20px;
   flex: 1 1 calc(33.33% - 20px); /* Each course takes up roughly a third of the container, minus the gap */
-  max-width: calc(33.33% - 20px); /* Ensure that the card does not exceed one-third of the row width */
-  min-width: 280px; 
+  max-width: calc(
+    33.33% - 20px
+  ); /* Ensure that the card does not exceed one-third of the row width */
+  min-width: 280px;
   text-align: start;
 }
 
@@ -44,7 +44,6 @@
     max-width: calc(50% - 20px);
   }
 }
-
 
 @media (max-width: 768px) {
   .courses h2 {
