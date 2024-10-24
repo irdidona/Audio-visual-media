@@ -22,7 +22,8 @@ export class ChapterDialogComponent implements OnInit {
     description: '',
     videoUrl: '',
     explanation: '',
-    quiz: []
+    quiz: [],
+    courseId: ''
   };
   selectedFile: File | null = null;
   isEditMode: boolean = false;
@@ -32,9 +33,13 @@ export class ChapterDialogComponent implements OnInit {
     private chapterService: ChapterService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
+    console.log('data', data);
     if (data.chapter) {
       this.chapter = { ...data.chapter };
       this.isEditMode = true;
+    }
+    if (data.courseId) {
+      this.chapter.courseId = data.courseId;
     }
   }
   ngOnInit(): void {
@@ -56,9 +61,11 @@ export class ChapterDialogComponent implements OnInit {
   formData.append('explanation',this.chapter.explanation);
 
   formData.append('video',this.chapter.videoUrl, this.chapter.videoUrl.name);
+
+  formData.append('courseId',this.chapter.courseId);
  
   console.log(formData)
-
+  console.log(this.chapter.courseId)
   this.chapterService.createChapter(formData).subscribe((response) => {
     console.log('Chapter created:', response);
   

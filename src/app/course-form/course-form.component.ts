@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CourseService } from '../course-list/course.service';
 import { Course, Chapter } from '../course-list/course.model';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -20,8 +19,6 @@ export class CourseFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private courseService: CourseService,
-    private router: Router,
     private route: ActivatedRoute
   ) {
     this.courseForm = this.fb.group({

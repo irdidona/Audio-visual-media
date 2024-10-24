@@ -10,7 +10,7 @@ const chapterSchema = new mongoose.Schema({
     contentType: String, // To store the video MIME type (e.g., 'video/mp4')
   },
   quiz: [{ question: String, options: [String], answer: String }],
-  
+  courseId: { type: mongoose.Schema.Types.ObjectId, ref: 'Course', required: true },
 });
 
 const Chapter = mongoose.model('Chapter', chapterSchema);

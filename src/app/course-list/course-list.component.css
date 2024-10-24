@@ -1,39 +1,62 @@
-.course-list-container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 20px;
+.courses {
+  padding: 50px 20px;
 }
 
-.courses-list {
+.courses h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+.course-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  flex-direction: column;
   gap: 20px;
+  justify-content: space-between;
 }
 
-.course-card {
-  width: 25%;
-  border: 1px solid #ddd;
-  padding: 15px;
-  margin-bottom: 15px;
+.course {
+  background: white;
   border-radius: 5px;
-  transition: box-shadow 0.3s ease;
-  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  padding: 20px;
+  flex: 1 1 calc(33.33% - 20px); /* Each course takes up roughly a third of the container, minus the gap */
+  max-width: calc(33.33% - 20px); /* Ensure that the card does not exceed one-third of the row width */
+  min-width: 280px; 
+  text-align: start;
 }
 
-.course-card:hover {
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+.course img {
+  max-width: 100%;
+  height: auto;
 }
 
-.teacher {
-  color: var(--main-color);
+.course p {
+  color: #555;
 }
 
-.details-link {
-  color: var(--main-color);
-  text-decoration: none;
+@media (max-width: 1024px) {
+  .course {
+    flex: 1 1 calc(50% - 20px); /* Two columns on medium-sized screens */
+    max-width: calc(50% - 20px);
+  }
 }
 
-.details-link:hover {
-  text-decoration: underline;
+
+@media (max-width: 768px) {
+  .courses h2 {
+    font-size: 1.8rem;
+  }
+
+  .course-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .course {
+    max-width: 100%;
+  }
 }

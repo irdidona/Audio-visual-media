@@ -36,5 +36,23 @@ exports.createChapter = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-
 };
+
+exports.getChaptersByCourseId = async (req, res) => {
+  try {
+    const { courseId } = req.params;
+    const chapters = await Chapter.find({ courseId: courseId });
+    res.status(200).json(chapters);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.deleteChapter = async (req, res) => {
+  try {
+    await Chapter.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: 'Chapter deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}

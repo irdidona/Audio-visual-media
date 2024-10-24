@@ -8,6 +8,7 @@ const adminRoutes = require("./routes/adminRoutes");
 const userRoutes = require("./routes/userRoutes");
 const courseRoutes = require("./routes/courseRoutes");
 const chapterRoutes = require("./routes/chapterRoutes");
+const enrollmentRoutes = require("./routes/enrollmentRoutes");
 
 
 dotenv.config();
@@ -31,6 +32,8 @@ app.use("/api/users", userRoutes);
 
 app.use("/api/courses", courseRoutes);
 app.use("/api/chapters", chapterRoutes);
+
+app.use("/api/enrollments", enrollmentRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

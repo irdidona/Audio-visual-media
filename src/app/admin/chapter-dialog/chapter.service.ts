@@ -17,8 +17,11 @@ import { HttpClient } from "@angular/common/http";
      }
 
      getChapterByCourseId(courseId: string): Observable<Chapter[]> {
-        return this.http.get<Chapter[]>(`${this.apiUrl}/getByCourseId/${courseId}`);
+        return this.http.get<Chapter[]>(`${this.apiUrl}/${courseId}`);
      }
       
+     deleteChapter(id: string): Observable<void> {
+         return this.http.delete<void>(`${this.apiUrl}/delete-chapter/${id}`);
+       }
 
   }

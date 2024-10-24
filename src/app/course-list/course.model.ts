@@ -7,6 +7,7 @@ export interface QuizQuestion {
 }
 
 export interface Chapter {
+  courseId: string;
   title: string;
   videoUrl: any;
   description: string;
@@ -16,11 +17,11 @@ export interface Chapter {
 
 export interface Course {
   _id?: any;
-  img?: Buffer | string;
+  imageUrl?: Buffer | string;
   title: string;
   description: string;
   teacher: Tutor;
   createdAt: Date;
   updatedAt: Date;
-  chapters: Chapter[];
+  //chapters: Chapter[];
 }

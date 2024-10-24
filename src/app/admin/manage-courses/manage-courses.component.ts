@@ -33,6 +33,7 @@ export class ManageCoursesComponent implements OnInit {
 
   loadCourses(): void {
     this.courseService.getCourses().subscribe((data: Course[]) => {
+      console.log('Courses:', data);
       this.courses = data;
     }, error => {
       console.error('Error fetching courses', error);
@@ -52,6 +53,7 @@ export class ManageCoursesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        console.log('Course:', result);
        this.courseService.createCourse(result).subscribe(() => {
         this.loadCourses();
       }, error => {
@@ -111,14 +113,9 @@ export class ManageCoursesComponent implements OnInit {
     dialogRef.afterClosed().subscribe((chapter) => {
       if (chapter) {
         console.log('Chapter:', chapter);
-        course.chapters.push(chapter._id);
         console.log('Course:', course);
-        this.courseService.updateCourse(course._id, course).subscribe(() => {
-          this.loadCourses();
-        }, error => {
-          console.error('Error updating course', error);
-        });
-       
+        this.loadCourses();
+      
       }
     });
 

@@ -1,15 +1,18 @@
-
-<div class="course-list-container">
+<section class="courses">
     <h2>All Courses</h2>
-    <div class="course-card" *ngFor="let course of courses">
-        <!-- <img *ngIf="course.videoUrl" src="path_to_thumbnail" alt="{{ course.title }} thumbnail"> -->
-        <h3>{{ course.title }}</h3>
-        <p>{{ course.description }}</p>
-        <p><strong>Teacher:</strong> {{ course.teacher.name }}</p>
-        
-        <a [routerLink]="['/courses', course._id]" class="details-link">View Details</a>
+    <div class="courses-list">
+        <div class="course" *ngFor="let course of courses">
+            <img *ngIf="course.imageUrl" [src]="course.imageUrl">
+            <h3>{{ course.title }}</h3>
+            <p>{{ course.description }}</p>
+            <p><strong>Teacher:</strong> {{ course.teacher.name }}</p>
+            
+            <a [routerLink]="['/courses', course._id]" class="details-link" *ngIf="isEnrolled">View Details</a>
+            <button (click)="enroll(course)" class="enroll-button" *ngIf="isLoggedIn">Enroll</button>
+          </div>
       </div>
-  </div>
+</section>
+
 
 
   

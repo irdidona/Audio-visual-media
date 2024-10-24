@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
 
     this.authService.getUserStatus().subscribe((user) => {
       this.isLoggedIn = !!user;
+      console.log('User:', user);
       if (user) {
         this.userName = user.name;  // Assuming the user object contains a name property
       }

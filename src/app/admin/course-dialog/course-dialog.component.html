@@ -22,7 +22,7 @@
 
     <mat-label>Image URL</mat-label>
     <input type="file" (change)="onFileSelected($event)" /> 
-    <img [src]="course.img" *ngIf="course.img" style="width: 100px; height: 100px; margin-left: 10px;">
+    <img [src]="course.imageUrl" *ngIf="course.imageUrl" style="width: 100px; height: 100px; margin-left: 10px;">
     
   </form>
 </mat-dialog-content>

@@ -25,13 +25,13 @@ import { CourseService } from '../manage-courses/course.service';
 export class CourseDialogComponent {
   course: Course = {
     _id: 0,
-    img: '',
+    imageUrl: '',
     title: '',
     description: '',
     teacher: new Tutor,
     createdAt: new Date(),
     updatedAt: new Date(),
-    chapters: []
+    // chapters: []
   };
   teachers: any[] = [];
   isEditMode: boolean = false;
@@ -42,7 +42,7 @@ export class CourseDialogComponent {
     private http: HttpClient,
     private tutorService: TutorService,
   ) {
-    if (data.course) {
+    if (data.course ) {
       this.course = { ...data.course };
       this.isEditMode = true;
     }
@@ -56,19 +56,20 @@ export class CourseDialogComponent {
 
     const file = event.target.files[0];
     console.log('Selected file:', file);
-    if (file) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      console.log('Reader:', reader);
-      reader.onload = () => {
-        console.log('Reader result:', reader.result);
-        this.course.img = reader.result as Buffer;
-        console.log('course image:', this.course.img);
-      };
-      reader.onerror = (error) => {
-        console.error('Error converting file to base64:', error);
-      };
-    }
+    this.course.imageUrl = file;
+    // if (file) {
+    //   const reader = new FileReader();
+    //   reader.readAsDataURL(file);
+    //   console.log('Reader:', reader);
+    //   reader.onload = () => {
+    //     console.log('Reader result:', reader.result);
+    //     this.course.imageUrl = reader.result as Buffer;
+    //     console.log('course image:', this.course.imageUrl);
+    //   };
+    //   reader.onerror = (error) => {
+    //     console.error('Error converting file to base64:', error);
+    //   };
+    // }
   }
 
 
