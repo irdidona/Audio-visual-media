@@ -76,11 +76,16 @@ export class CourseListComponent implements OnInit {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     const user = this.localStorageService.getItem('user'); // Get the user ID from localStorage or a service
-
+    let userId;
     console.log("token", token);
-    console.log("user", user);
+    if (user) {
+      console.log("user", JSON.parse(user)._id);
+      userId = JSON.parse(user)._id;
+    } else {
+      console.error("User data is null");
+    }
     console.log('Enrolling in course:', course);
-    this.enrollmentService.enrollStudent(course._id).subscribe(() => {
+    this.enrollmentService.enrollStudent(course._id, userId).subscribe(() => {
       console.log('Enrolled in course:', course);
       this.isEnrolled = true;
     }, (error: Error) => {

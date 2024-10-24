@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { CourseService } from '../manage-courses/course.service';
 
 @Component({
   selector: 'app-add-tutor',
@@ -27,16 +28,21 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 })
 export class AddTutorComponent implements OnInit {
   tutor: Tutor = new Tutor();
-  availableCourses: string[] = ['Math', 'Science', 'History', 'Programming'];
+  availableCourses: string[] = [];
 
   constructor(
     private tutorService: TutorService,
+    private courseService: CourseService,
     public dialogRef: MatDialogRef<AddTutorComponent>
   ) {}
 
   ngOnInit() {
     // Initialize the tutor object with default values
     this.tutor = new Tutor();
+    this.courseService.getCourses().subscribe((courses) => {
+      this.availableCourses = courses.map((course) => course.title);
+    });
+
   }
 
   onSubmit() {

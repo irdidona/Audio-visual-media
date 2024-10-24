@@ -3,8 +3,7 @@ const Enrollment = require('../models/enrollment');
 
 exports.createEnrollment = async (req, res) => {
     try {
-        const { courseId } = req.body;
-        const userId = req.user.id;
+        const { courseId, userId} = req.body;
         const newEnrollment = new Enrollment({
             courseId,
             userId,

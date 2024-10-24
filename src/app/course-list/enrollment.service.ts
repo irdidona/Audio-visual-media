@@ -14,8 +14,8 @@ export class EnrollmentService {
   constructor(private http: HttpClient) { }
 
   // Enroll a student in a course
-  enrollStudent(courseId: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/add-enrollment`, courseId);
+  enrollStudent(courseId: string, userId: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/enroll`, { courseId, userId });
   }
 
   // Unenroll a student from a course
