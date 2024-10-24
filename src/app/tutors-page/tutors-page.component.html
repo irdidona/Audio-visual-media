@@ -1,31 +1,38 @@
-
 <div class="tutors-container">
-    <div class="tutors-list">
-      <h3>Our Tutors</h3>
-      <ul>
-        <li *ngFor="let tutor of tutors" 
-            (click)="selectTutor(tutor)" 
-            [class.selected]="tutor === selectedTutor">
-          <!-- <img [src]="tutor.image" alt="{{ tutor.name }}"> -->
-          <span>{{ tutor.name }}</span>
+  <div class="tutors-list">
+    <h3>Our Tutors</h3>
+    <ul>
+      <li
+        *ngFor="let tutor of tutors"
+        (click)="selectTutor(tutor)"
+        [class.selected]="tutor === selectedTutor"
+      >
+        <!-- <img [src]="tutor.image" alt="{{ tutor.name }}"> -->
+        <span>{{ tutor.name }}</span>
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-8 tutor-details-section">
+    <div class="tutor-details-card" *ngIf="selectedTutor">
+      <h3 class="tutor-name">
+        {{ selectedTutor.name }} {{ selectedTutor.surname }}
+      </h3>
+      <p class="tutor-email">
+        {{ selectedTutor.email }}
+      </p>
+      <p class="tutor-bio">{{ selectedTutor.bio }}</p>
+      <h5 class="courses-title">Courses Offered</h5>
+      <ul class="list-group courses-list">
+        <li
+          *ngFor="let course of selectedTutor.courses"
+          class="list-group-item"
+        >
+          {{ course }}
         </li>
       </ul>
     </div>
-  
-    <div class="tutor-details" *ngIf="selectedTutor">
-      <h4>{{ selectedTutor?.name }}</h4>
-      <p>{{ selectedTutor?.bio }}</p>
-  
-      <div *ngIf="selectedTutor.livestreaming" class="live-stream">
-        <p><strong>Currently Live Streaming!</strong></p>
-      </div>
-  
-      <h5>Courses</h5>
-      <!-- <ul>
-        <li *ngFor="let course of selectedTutor.courses">
-          {{ course. }} - {{ course.description }}
-        </li>
-      </ul> -->
+    <div class="no-selection" *ngIf="!selectedTutor">
+      <p>Please select a tutor to view their details.</p>
     </div>
   </div>
-  
+</div>

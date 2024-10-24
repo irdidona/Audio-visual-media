@@ -3,7 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TutorService } from './tutor.service';
 import { Tutor } from './Tutor.model';
 import { CommonModule } from '@angular/common';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
@@ -29,7 +29,10 @@ export class AddTutorComponent implements OnInit {
   tutor: Tutor = new Tutor();
   availableCourses: string[] = ['Math', 'Science', 'History', 'Programming'];
 
-  constructor(private tutorService: TutorService) {}
+  constructor(
+    private tutorService: TutorService,
+    public dialogRef: MatDialogRef<AddTutorComponent>
+  ) {}
 
   ngOnInit() {
     // Initialize the tutor object with default values
@@ -41,6 +44,7 @@ export class AddTutorComponent implements OnInit {
     // Call the service to send data to the backend
     this.tutorService.addTutor(this.tutor).subscribe((response) => {
       console.log('Tutor added successfully:', response);
+      this.dialogRef.close();
     });
   }
 }
