@@ -1,4 +1,4 @@
-<div class="course-details-container">
+<div class="course-details-container" *ngIf="!isLoading">
     <div class="course-sidebar">
       <h3>{{ course.title }}</h3>
       <ul>
@@ -18,5 +18,9 @@
         <video [src]="videoUrl" controls></video>
       </div>
     </div>
+  </div>
+
+  <div *ngIf="isLoading" class="loader-container">
+    <div class="loader"></div>
   </div>
   

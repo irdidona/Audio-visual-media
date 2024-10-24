@@ -3,8 +3,9 @@ const User = require("../models/user");
 
 const jwt = require("jsonwebtoken");
 
-const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "30d" });
+const generateToken = (id, email) => {
+ 
+  return jwt.sign({ id: id, email: email }, process.env.JWT_SECRET, { expiresIn: "1h" });
 };
 
 exports.register = async (req, res) => {
@@ -31,7 +32,7 @@ exports.register = async (req, res) => {
       role: user.role,
       profilePictureUrl: user.profilePictureUrl,
       bio: user.bio,
-      token: generateToken(user._id),
+      token: generateToken(user._id, user.email),
     });
   } else {
     res.status(400).json({ message: "Invalid user data" });
@@ -50,7 +51,7 @@ exports.login = async (req, res) => {
         role: user.role,
         profilePictureUrl: user.profilePictureUrl,
         bio: user.bio,
-        token: generateToken(user._id),
+        token: generateToken(user._id, user.email),
       });
     } else {
       res.status(401).json({ message: "Invalid email or password" });

@@ -1,4 +1,6 @@
+import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -9,17 +11,15 @@ export class EnrollmentService {
   private apiUrl = 'http://localhost:3000/api/enrollments'; 
 
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   // Enroll a student in a course
-  enrollStudent(courseId: string, studentId: string): void {
-    // Add your code here
-    this.enrollStudent(courseId, studentId);
+  enrollStudent(courseId: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/add-enrollment`, courseId);
   }
 
   // Unenroll a student from a course
   unenrollStudent(courseId: string, studentId: string): void {
-    // Add your code here
   }
 
   // Get all enrolled students for a course

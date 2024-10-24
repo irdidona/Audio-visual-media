@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, map, Observable, tap } from 'rxjs';
+import { LocalStorageService } from './local-storage.service';
+import jwt_decode from 'jwt-decode';
+
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +15,7 @@ export class AuthService {
   private user: any = { role: 'admin' }; // Simulating an admin user for now
 
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private localStorageService: LocalStorageService) {}
 
 
   register(userData: any): Observable<any> {
@@ -27,7 +30,8 @@ export class AuthService {
       tap((response: any) => {
         console.log('Login successful', response);
 
-        localStorage.setItem('token', response.token);
+        this.localStorageService.setItem('token', response.token);
+        this.localStorageService.setItem('user', JSON.stringify(response));
         this.userSubject.next(response);
         this.loggedIn.next(true);
       })
@@ -36,7 +40,12 @@ export class AuthService {
   
   isLoggedIn(): Observable<boolean> {
     // This should be replaced with a real API call
-    return this.loggedIn.asObservable();
+    const token = this.localStorageService.getItem('token');
+      // Check if the token exists and is valid (e.g., using a library like jwt-decode)
+    return this.loggedIn.asObservable().pipe(
+      map((loggedIn: any) => loggedIn && !!token)
+    );
+    
   }
 
   getUserStatus(): Observable<any> {

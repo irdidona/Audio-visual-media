@@ -17,6 +17,7 @@ export class CoursesComponent implements OnInit {
   selectedChapter?: Chapter;
   chapters: Chapter[] = [];
   videoUrl: string | null = null;
+  isLoading: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,6 +27,10 @@ export class CoursesComponent implements OnInit {
 
   ngOnInit(): void {
     const courseId = this.route.snapshot.paramMap.get('id')!;
+    this.loadCourseAndChapters(courseId);
+  }
+
+  loadCourseAndChapters(courseId: string): void {
     this.courseService.getCourseById(courseId).subscribe((course: any) => {
       this.course = course;
       console.log('Course:', course);
@@ -36,8 +41,15 @@ export class CoursesComponent implements OnInit {
         if (this.selectedChapter.videoUrl && this.selectedChapter.videoUrl.data) {
           this.convertToVideoUrl(this.selectedChapter.videoUrl.data, this.selectedChapter.videoUrl.contentType);
         }
+        this.isLoading = false;
+      }, (error: any) => {
+        console.error('Error loading chapters:', error);
+        this.isLoading = false;
       }
       );
+    }, (error: any) => {
+      console.error('Error loading course:', error);
+      this.isLoading = false;
     });
   }
 

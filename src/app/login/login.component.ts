@@ -23,7 +23,7 @@ export class LoginComponent {
     this.authService.login(this.credentials).subscribe(
       (response) => {
         console.log('Login successful', response);
-        localStorage.setItem('token', response.token);
+        // this.localStorageService.setItem('token', response.token);
         if (response.role === 'admin') {
          this.router.navigate(['/admin']);
         }else{

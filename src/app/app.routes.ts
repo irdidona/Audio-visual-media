@@ -13,14 +13,13 @@ import { ManageUsersComponent } from './admin/manage-users/manage-users.componen
 import { ManageCoursesComponent } from './admin/manage-courses/manage-courses.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { adminGuard } from './admin.guard';
-import { TutorsComponent } from './tutors/tutors.component';
 
 export const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
   },
-  { path: 'tutors', component: TutorsComponent },
+  { path: 'tutors', component: TutorsPageComponent },
   { path: 'courses', component: CourseListComponent },
   { path: 'courses/:id', component: CoursesComponent },
   { path: 'course/add', component: CourseFormComponent },

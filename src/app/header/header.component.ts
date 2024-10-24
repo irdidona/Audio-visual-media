@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../authService.service'; 
 import { Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { LocalStorageService } from '../local-storage.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,7 @@ export class HeaderComponent implements OnInit {
   isLoggedIn: boolean = false;
   userName: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router,private localStorageService: LocalStorageService) {}
 
   ngOnInit(): void {
     
@@ -37,6 +38,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
+    this.localStorageService.removeItem('token');
     this.authService.logout();
     this.router.navigate(['/login']);
   }

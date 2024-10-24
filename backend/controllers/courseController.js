@@ -6,12 +6,7 @@ exports.createCourse = async (req, res) => {
     try {
       const { title, description, teacher } = req.body;
       let imageUrl = null;
-  
-      // Check if image data is provided
-    //   if (req.body.img) {
-    //     const base64Data = req.body.img.split(';base64,').pop();
-    //     imageUrl = Buffer.from(base64Data, 'base64');
-    //   }
+
   
       // Create new course with the provided data
       const course = new Course({
