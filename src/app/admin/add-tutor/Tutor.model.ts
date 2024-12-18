@@ -6,6 +6,6 @@ export class Tutor {
     courses: string[] = [];
     bio: string = '';
     livestreaming: boolean = false;
-   
+    _id: string = '';
   }
   

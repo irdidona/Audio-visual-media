@@ -84,7 +84,7 @@ exports.updateUser = async (req, res) => {
         // Respond with the user data if successfully created
         if (user) {
             res.status(201).json({
-                _id: user._id,
+                id: user._id,
                 name: user.name,
                 email: user.email,
                 password: user.password,

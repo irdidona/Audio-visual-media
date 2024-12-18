@@ -22,7 +22,7 @@ import { ChapterDialogComponent } from '../chapter-dialog/chapter-dialog.compone
 })
 export class ManageCoursesComponent implements OnInit {
   courses: Course[] = [];
-  displayedColumns: string[] = ['title', 'description', 'createdAt', 'updatedAt', 'teacher', 'chaptersCount', 'actions'];
+  displayedColumns: string[] = ['title', 'description', 'createdAt', 'updatedAt', 'teacher', 'actions'];
 
   constructor(private courseService: CourseService, public dialog: MatDialog,
     private chapterService: ChapterService) { }

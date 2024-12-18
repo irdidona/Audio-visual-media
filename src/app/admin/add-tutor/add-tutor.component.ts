@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TutorService } from './tutor.service';
 import { Tutor } from './Tutor.model';
 import { CommonModule } from '@angular/common';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
@@ -29,16 +29,23 @@ import { CourseService } from '../manage-courses/course.service';
 export class AddTutorComponent implements OnInit {
   tutor: Tutor = new Tutor();
   availableCourses: string[] = [];
+  isEditMode: boolean = false;
 
   constructor(
     private tutorService: TutorService,
     private courseService: CourseService,
-    public dialogRef: MatDialogRef<AddTutorComponent>
-  ) {}
+    public dialogRef: MatDialogRef<AddTutorComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+  ) {
+    if (data.tutor ) {
+      this.tutor = { ...data.tutor };
+      this.isEditMode = true;
+    }
+  }
 
   ngOnInit() {
     // Initialize the tutor object with default values
-    this.tutor = new Tutor();
+    //this.tutor = new Tutor();
     this.courseService.getCourses().subscribe((courses) => {
       this.availableCourses = courses.map((course) => course.title);
     });
@@ -48,9 +55,7 @@ export class AddTutorComponent implements OnInit {
   onSubmit() {
     console.log('Tutor Data:', this.tutor);
     // Call the service to send data to the backend
-    this.tutorService.addTutor(this.tutor).subscribe((response) => {
-      console.log('Tutor added successfully:', response);
-      this.dialogRef.close();
-    });
+    this.dialogRef.close(this.tutor);
+   
   }
 }

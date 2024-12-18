@@ -13,6 +13,7 @@ import { ManageUsersComponent } from './admin/manage-users/manage-users.componen
 import { ManageCoursesComponent } from './admin/manage-courses/manage-courses.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { adminGuard } from './admin.guard';
+import { ManageTutorComponent } from './admin/manage-tutor/manage-tutor.component';
 
 export const routes: Routes = [
   {
@@ -34,6 +35,7 @@ export const routes: Routes = [
     canActivate: [adminGuard], // Admin guard to protect these routes
     children: [
       { path: 'add-tutor', component: AddTutorComponent },
+      { path: 'manage-tutors', component: ManageTutorComponent },
       { path: 'manage-users', component: ManageUsersComponent },
       { path: 'manage-courses', component: ManageCoursesComponent },
     ],
